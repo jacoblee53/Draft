@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background: #fff;
+}
+
+.container {
+    width: 1000px;
+    height: 500px;
+    border: 1px solid black;
+    background: #eee;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+#left-md {
+    width: 40%;
+    height: 100%;
+    background: lightblue;
+}
+
+#left-md #md {
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#right-html {
+    width: 40%;
+    height: 100%;
+    background: lightgreen;
+}
+
+.container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
