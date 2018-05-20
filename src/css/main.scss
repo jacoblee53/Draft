@@ -3,36 +3,194 @@ body {
     background: #fff;
 }
 
-.container {
-    width: 1000px;
-    height: 500px;
-    border: 1px solid black;
-    background: #eee;
-    display: flex;
-    justify-content:space-evenly;
+/* Logo */
+
+div.logo {
+    width: 164px;
+    height: 73px;
+    margin: 20px auto 0;
 }
 
-#left-md {
-    width: 40%;
-    height: 100%;
-    background: lightblue;
-}
-
-#left-md #md {
-    padding: 0;
-    border: none;
+img#draft-logo {
     width: 100%;
     height: 100%;
 }
 
-#right-html {
-    width: 40%;
-    height: 100%;
-    background: lightgreen;
+img#draft-logo:hover {
+    cursor: pointer;
+    background: #eee;
 }
 
-.container:after {
-    content: "";
-    display: block;
-    clear: both;
+div.container {
+    width: 80%;
+    height: 450px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+
+/* Markdown container */
+
+#markdown-container {
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    border-right: 1px solid #000;
+    box-sizing: border-box;
+    float: left;
+}
+
+#markdown-container>#markdown-area {
+    box-sizing: border-box;
+    padding: 20px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+}
+
+
+/* Preview container */
+
+#preview-container {
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* Toolbar */
+
+div.draft-toolbar {
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #000;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    box-sizing: border-box;
+}
+
+ul.draft-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+}
+
+.draft-menu>li {
+    display: inline-block;
+    position: relative;
+    width: 33px;
+    height: 35px;
+}
+
+svg.icon {
+    padding: 2px;
+}
+
+svg.icon:hover {
+    background: #ddd;
+    padding: 1px;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* Divider */
+
+.draft-menu>li.divider {
+    height: 66%;
+    width: 0;
+    text-indent: -99999px;
+    border-right: 2px solid #ccc;
+    position: relative;
+    top: -7px;
+    left: 2px;
+    box-sizing: border-box;
+}
+
+/* Custom scroll bar */
+
+::-webkit-scrollbar {
+    width: 9px;
+    background: #eee;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: rgb(217, 217, 217);
+}
+
+/* Tooltip */
+span.tooltip {
+    visibility: hidden;
+    width: 80px;
+    background-color: #ddd;
+    color: #000;
+    text-align: center;
+    position: absolute;
+    padding: 5px;
+    top: -10px;
+    left: -25px;
+    font-size: 0.6em;
+    font-family: 'Quicksand', sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s, top 0.5s;
+}
+
+.draft-menu > li:hover .tooltip{
+    opacity: 1;
+    top:-25px;
+    visibility: visible;
+}
+
+/* Wrapper */
+div.wrapper {
+    width: 80%;
+    margin: 0 auto 10px;
+}
+
+/* Switch */
+div.switch {
+    font-weight: bold;
+    font-size: 0.65em;
+    
+}
+
+div.switch p {
+    margin: 0;
+}
+
+
+div.switch  a{
+    text-decoration: none;    
+    color: #000;
+    width: 32px;
+    height: 20px;
+    line-height: 20px;  
+    text-align: center;
+    display: inline-block;
+}
+
+div.switch  a:hover {
+    opacity: 0.6;
+}
+
+a.on {
+    color: #fff!important;
+    background: #000;
+}
+
+@media screen and (mix-width: 1722px) {
+ 
 }

@@ -1,11 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
-var extractTextPlugin = require('extract-text-webpack-plugin');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var cleanWebpackPlugin = require('clean-webpack-plugin');
+var transferWebpackPugin = require('transfer-webpack-plugin');
+var extractTextPlugin = require('extract-text-webpack-plugin');
 
 // css 
-var extractPlugin = new extractTextPlugin('./css/main.css');
+var mainExtractPlugin = new extractTextPlugin('./css/main.min.css');
+var iconExtractPlugin = new extractTextPlugin('./css/icon.min.css');
 
 module.exports = {
 
@@ -17,7 +19,7 @@ module.exports = {
     // Output
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "./js/[name].[hash].min.js",
+        filename: "./js/[name].min.js",
     },
 
     // Module Loaders 
@@ -36,20 +38,40 @@ module.exports = {
                 }],
             },
 
+            // css
+            // {
+            //     test: /\.css$/,
+            //     use: ['style-loader', 'css-loader'],
+            // },
+
             // scss
             {
-                test: /\.scss$/,
-                use: extractPlugin.extract({
+                test: /iconfont\.scss$/,
+                use: iconExtractPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader'],
                 })
             },
 
-
+            {
+                test: /\.scss$/,
+                exclude: /iconfont\.scss$/,
+                use: mainExtractPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader'],
+                })
+            },   
+            
             // html
             {
                 test: /\.html$/,
-                use: ['html-loader'],
+                use: [{
+                    loader: 'html-loader',
+                    options: {
+                        minimize: false,
+                        removeComments: false,
+                    }
+                }],
             },
 
             // img
@@ -58,7 +80,7 @@ module.exports = {
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: '[hash].[ext]',
+                        name: '[name].[ext]',
                         outputPath: 'img/',
                         publicPath: 'img/'
                     }
@@ -82,21 +104,34 @@ module.exports = {
 
     // Plugins
     plugins: [
-        new cleanWebpackPlugin(['dist/css', 'dist/js', 'dist/img','dist/*.html']),
 
-        extractPlugin,
+        new transferWebpackPugin([{
+            from: "lib",
+            to: "lib"
+        },], path.resolve(__dirname, "src")),
 
-        // jQuery
-        // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery"
-        // }),
+        new cleanWebpackPlugin([
+            'dist/css',
+            'dist/js',
+            'dist/img',
+            'dist/*.html',
+            'dist/fonts'
+        ]),
+
+        iconExtractPlugin,
+        mainExtractPlugin,
 
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html',
             chunks: ['app'],
         }),
+
+        // jQuery
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery"
+        // }),
     ],
 
 };
