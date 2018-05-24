@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <title>Draft</title>
     <link rel="stylesheet" href="./lib/codemirror.min/codemirror.min.css">
+    <link rel="stylesheet" href="./lib/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="./lib/codemirror/addon/search/matchesonscrollbar.css">
     <script src="./lib/codemirror.min/codemirror.min.js"></script>
     <script src="./lib/codemirror.min/modes.min.js"></script>
     <script src="./lib/codemirror.min/addons.min.js"></script>
     <script src="./lib/marked.min.js"></script>
-</head>
+    <script src="./lib/codemirror/addon/search/jump-to-line.js"></script>
+</head>s
 
 <body>
     <div class="logo">
@@ -25,6 +28,13 @@
                 /
                 <a href="#" id="off">OFF</a>
             </p>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
         </div>
     </div>
 

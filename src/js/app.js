@@ -1,5 +1,6 @@
 import "../css/iconfont.scss";
 import "../css/main.scss";
+
 var ui = require('../js/ui');
 var format = require('../js/format');
 
@@ -13,9 +14,10 @@ $(function () {
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         extraKeys: {
-            "Ctrl-Q": function (cm) {
-                cm.foldCode(cm.getCursor());
-            }
+            "Alt-F": "find",
+            "Alt-G": "jumpToLine",
+            "Alt-D": "replace",
+            "Shift-Alt-D": "replaceAll"
         },
         placeholder: "Start markdown here...",
         mode: {
@@ -98,6 +100,9 @@ $(function () {
                 break;
             case 'timestamp':
                 format.setTimestamp(editor);
+                break;
+            case 'table':
+                
                 break;
             case 'empty':
                 format.setEmpty(editor);

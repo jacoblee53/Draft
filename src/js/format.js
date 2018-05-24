@@ -158,17 +158,24 @@ module.exports = {
     },
 
     setTable: function setTable() {
+        var cursor = editor.getCursor();
+
+    },  
+
+    setSearch: function setSearch() {  
 
     },
 
-    
+    setGoToLine: function setGoToLine() {  
+
+    },
 
     setTimestamp: function setTimestamp(editor) {
         editor.replaceSelection(`${editor.getSelection()}${getDate()}`);
     },
 
     setEmoji: function setEmoji() {
-
+        
     },
 
     setEmpty: function setEmpty(editor) {

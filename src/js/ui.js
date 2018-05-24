@@ -27,8 +27,6 @@ module.exports = {
         });
     },
 
-
-
     // Add or Remove the Tooltip for each item
     addTooltip: function addTooltip() {
         $('ul.draft-menu li:not(.divider)').each(function (index, element) {
@@ -40,5 +38,4 @@ module.exports = {
     removeTooltip: function removeTooltip() {
         $('ul.draft-menu li:not(.divider) span').remove();
     },
-
 };
