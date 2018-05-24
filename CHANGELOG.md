@@ -23,9 +23,6 @@
 4. feat: Complete the following functions  undo/redo/bold/italic/line-through/block-quote/uppercase/capitalize/lowercase/h1-h5/ordered-list/unordered-list/divider/link/image(exclude: imglink)/inlinecode/timestamp/empty;
 5. other...
 
-<<<<<<< HEAD:Changelog.md
-<<<<<<< HEAD:Changelog.md
-<<<<<<< HEAD:Changelog.md
 [👆 05/20](http://oppnkay27.bkt.clouddn.com/20180520152680855740911.png)
 
 === 05/24 ===
