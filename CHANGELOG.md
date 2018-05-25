@@ -29,7 +29,13 @@
 
 1. docs: Rename changelog.md to CHANGELOG.md;
 2. style: Design the modal-box;
-3. feat: Add search/jump to line/replace/replace all function;
+3. feat: Add search/jump to line/replace/replace all functions;
 4. todo: Add niuqi/imgur to upload imgs and generate links;
 
 [👆 05/24](http://)
+
+=== 05/25 ===
+
+1. feat: Add md-mode/pre-mode funcitons;
+
+[👆 05/25](http://)

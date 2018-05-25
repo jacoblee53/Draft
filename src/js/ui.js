@@ -38,4 +38,15 @@ module.exports = {
     removeTooltip: function removeTooltip() {
         $('ul.draft-menu li:not(.divider) span').remove();
     },
+
+    addModal: function addModal(newClass) {  
+        $('body').append(`    
+            <div id=\"myModal\" class=\"modal ${newClass}\">
+                <div class=\"modal-content\">
+                    <span class=\"close\">&times;</span>
+                    <p>Some text in the Modal..</p>
+                </div>
+            </div>
+        `);
+    }
 };

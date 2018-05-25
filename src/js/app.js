@@ -19,7 +19,7 @@ $(function () {
             "Alt-D": "replace",
             "Shift-Alt-D": "replaceAll"
         },
-        placeholder: "Start markdown here...",
+        placeholder: "Enjoy Markdown!\n\"They say your attitude determines your latitude.\"",
         mode: {
             name: "gfm",
             tokenTypeOverrides: {
@@ -92,6 +92,9 @@ $(function () {
             case 'inlinecode':
                 format.setInlineCode(editor);
                 break;
+            case 'divider':
+                format.setDivider(editor);
+                break;
             case 'link':
                 format.setLink(editor);
                 break;
@@ -102,7 +105,21 @@ $(function () {
                 format.setTimestamp(editor);
                 break;
             case 'table':
-                
+                format.setTable();
+                break;
+            case 'search':
+                format.setSearch(editor);
+                break;
+            case 'gotoline':
+                format.setGoToLine(editor);
+                break;
+            case 'mdmode':
+                format.setMdMode();
+                break;
+            case 'premode':
+                format.setPreMode();
+                break;
+            case 'table':
                 break;
             case 'empty':
                 format.setEmpty(editor);
@@ -111,13 +128,10 @@ $(function () {
             default:
                 break;
         }
-
-
     });
 
 
     $('div.switch').on('click', 'a:not(.on)', function (index) {
-
         $('div.switch a.on').removeClass('on');
         $(this).addClass('on');
         if ($(this).attr('id') === 'on') {

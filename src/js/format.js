@@ -1,3 +1,4 @@
+var ui = require('./ui');
 module.exports = {
 
     undo: function undo(editor) {
@@ -122,8 +123,32 @@ module.exports = {
         editor.replaceSelection(`- ${editor.getSelection()}`);
     },
 
-    setDivider: function setDivider() {
+    setDivider: function setDivider(editor) {
+        var cursor = editor.getCursor();
+        if (cursor.ch === 0) {
+            editor.replaceSelection(`\n----------\n\n`);
+        } else {
+            editor.replaceSelection('\n\n---------\n\n');
+        }
+    },
 
+    setTOC: function setTOC() {
+        var cursor = editor.getCursor();
+
+    },
+
+    setMdMode: function setMdMode() {
+        $('div#markdown-container').removeClass('markdown-container-premode');
+        $('div#preview-container').removeClass('preview-container-premode');
+        $('div#markdown-container').toggleClass('markdown-container-mdmode');
+        $('div#preview-container').toggleClass('preview-container-mdmode');
+    },
+
+    setPreMode: function setPreMode() {
+        $('div#markdown-container').removeClass('markdown-container-mdmode');
+        $('div#preview-container').removeClass('preview-container-mdmode');
+        $('div#markdown-container').toggleClass('markdown-container-premode');
+        $('div#preview-container').toggleClass('preview-container-premode');
     },
 
     setLink: function setLink(editor) {
@@ -158,16 +183,15 @@ module.exports = {
     },
 
     setTable: function setTable() {
-        var cursor = editor.getCursor();
-
-    },  
-
-    setSearch: function setSearch() {  
-
+        ui.addModal('table-modal');
     },
 
-    setGoToLine: function setGoToLine() {  
+    setSearch: function setSearch(editor) {
+        editor.execCommand("find");
+    },
 
+    setGoToLine: function setGoToLine(editor) {
+        editor.execCommand("jumpToLine");
     },
 
     setTimestamp: function setTimestamp(editor) {
@@ -175,7 +199,7 @@ module.exports = {
     },
 
     setEmoji: function setEmoji() {
-        
+
     },
 
     setEmpty: function setEmpty(editor) {
@@ -193,13 +217,13 @@ function getDate() {
     var hour = d.getHours();
     var min = d.getMinutes();
     var weekday = d.getDay();
-    var today = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];  
+    var today = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     var output = d.getFullYear() + '/' +
         (month < 10 ? '0' : '') + month + '/' +
         (day < 10 ? '0' : '') + day + ' ' +
         today[weekday] + ' ' +
-        (hour < 10 ? '0' : '') + hour + ':' + 
+        (hour < 10 ? '0' : '') + hour + ':' +
         (min < 10 ? '0' : '') + min;
 
     return output;

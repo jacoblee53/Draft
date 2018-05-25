@@ -40,6 +40,15 @@ div.container {
     float: left;
 }
 
+.markdown-container-mdmode {
+    width: 100%!important;
+    border-right: none!important;
+}
+
+.preview-container-mdmode {
+    display: none!important;
+}
+
 #markdown-container>#markdown-area {
     box-sizing: border-box;
     padding: 20px;
@@ -49,7 +58,6 @@ div.container {
     resize: none;
     outline: none;
 }
-
 
 /* Preview container */
 
@@ -63,6 +71,16 @@ div.container {
     overflow: auto;
     overflow-x: hidden;
 }
+
+.markdown-container-premode {
+    display: none;
+    border-right: none!important;
+}
+
+.preview-container-premode {
+    width: 100%;
+}
+
 
 /* Toolbar */
 
@@ -195,7 +213,6 @@ a.on {
 /* Modal */
 
 .modal {
-    display: none; 
     position: fixed; 
     z-index: 1; 
     padding-top: 100px; 
