@@ -19,7 +19,7 @@ $(function () {
             "Alt-D": "replace",
             "Shift-Alt-D": "replaceAll"
         },
-        placeholder: "Enjoy Markdown!\n\"They say your attitude determines your latitude.\"",
+        placeholder: "Enjoy Markdown!\n\"They say your attitude determines your latitude. -Kanye West\"",
         mode: {
             name: "gfm",
             tokenTypeOverrides: {
@@ -107,6 +107,24 @@ $(function () {
             case 'table':
                 format.setTable();
                 break;
+            case 'howto':
+                format.setHowto();
+                break;
+            case 'about':
+                format.setAbout();
+                break;
+            case 'emoji':
+                format.setEmoji();
+                break;
+            case 'codeblock':
+                format.setCodeBlock();
+                break;
+            case 'export':
+                format.setExport();
+                break;
+            case 'ocr':
+                format.setOCR();
+                break;
             case 'search':
                 format.setSearch(editor);
                 break;
@@ -119,8 +137,6 @@ $(function () {
             case 'premode':
                 format.setPreMode();
                 break;
-            case 'table':
-                break;
             case 'empty':
                 format.setEmpty(editor);
                 console.log('empty');
@@ -130,6 +146,17 @@ $(function () {
         }
     });
 
+    $('body').on('click', 'span.close:first', function () {
+        $('#myModal').css('display', 'none');
+        $('#myModal').remove();
+    });
+
+    $(window).click(function (e) {
+        if (e.target.id === 'myModal') {
+            $('#myModal').css('display', 'none');
+            $('#myModal').remove();
+        }
+    });
 
     $('div.switch').on('click', 'a:not(.on)', function (index) {
         $('div.switch a.on').removeClass('on');
@@ -140,4 +167,25 @@ $(function () {
             ui.removeTooltip();
         }
     });
+
+    $('body').on('mousedown', 'div.modal', function (e) {
+        var isMove = true;
+        var div_x = e.pageX - $('div.modal').offset().left;
+        var div_y = e.pageY - $('div.modal').offset().top;
+        console.log(div_x + " " + div_y);
+        $(document).mousemove(function (e) {
+            if (isMove) {
+                var obj = $('div.modal');
+                obj.css({
+                    "left": e.pageX - div_x,
+                    "top": e.pageY - div_y,
+                    "cursor": 'move'
+                });
+            }
+        }).mouseup(
+            function (e) {
+                isMove = false;
+            });
+    });
+
 });

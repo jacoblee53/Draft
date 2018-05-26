@@ -1,4 +1,5 @@
 var ui = require('./ui');
+
 module.exports = {
 
     undo: function undo(editor) {
@@ -178,12 +179,28 @@ module.exports = {
         });
     },
 
-    setCodeBlock: function setCodeBlock() {
-
+    setTable: function setTable() {
+        ui.addTableModal('table-modal');
     },
 
-    setTable: function setTable() {
-        ui.addModal('table-modal');
+    setHowto: function setHowto() {
+        ui.addHowtoModal('howto-modal');
+    },
+
+    setAbout: function setAbout() {
+        ui.addAboutModal('about-modal');
+    },
+
+    setCodeBlock: function setCodeBlock() {
+        ui.addCodeblockModal('codeblock-modal');
+    },
+
+    setExport: function setExport() {
+        ui.addExportModal('export-modal');
+    },
+
+    setOCR: function setOCR() {  
+        ui.addOCRModal('ocr-modal');
     },
 
     setSearch: function setSearch(editor) {
@@ -199,7 +216,7 @@ module.exports = {
     },
 
     setEmoji: function setEmoji() {
-
+        ui.addEmojiModal('emoji-modal');
     },
 
     setEmpty: function setEmpty(editor) {

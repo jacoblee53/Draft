@@ -214,31 +214,30 @@ a.on {
 
 .modal {
     position: fixed; 
-    z-index: 1; 
-    padding-top: 100px; 
+    z-index: 99999; 
+    padding-top: 250px; 
+    padding-left: 15%;
     left: 0;
     top: 0;
-    width: 100%; 
+    width: 40%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
 }
 
 /* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 5px 15px;
+    border: 2px solid #000;
     width: 80%;
 }
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #000;
     float: right;
-    font-size: 28px;
+    font-size: 20px!important;
     font-weight: bold;
 }
 
@@ -249,6 +248,41 @@ a.on {
     cursor: pointer;
 }
 
-@media screen and (mix-width: 1722px) {
- 
+/* About Modal */
+.about-modal {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-modal p {
+    font-size: 14px;
+}
+
+.about-h1 {
+    font-size: 25px;
+}
+
+.about-h1 small {
+    font-size: 15px;
+    font-weight: normal;
+    color: #aaa;
+}
+
+p.about-link a{
+    text-decoration: underline;
+    color: #000;
+}
+
+p.about-link a:hover{
+    background: #000;
+    color: #fff;
+}
+
+p.about-info a{
+    text-decoration:none;
+    color: #000;
+}
+
+p.about-info a:hover{
+    background: #000;
+    color: #fff;
 }

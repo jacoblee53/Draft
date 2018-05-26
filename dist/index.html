@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Draft</title>
+    <link rel="stylesheet" href="./lib/codemirror.min/codemirror.min.css">
+    <link rel="stylesheet" href="./lib/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="./lib/codemirror/addon/search/matchesonscrollbar.css">
+    <script src="./lib/codemirror.min/codemirror.min.js"></script>
+    <script src="./lib/codemirror.min/modes.min.js"></script>
+    <script src="./lib/codemirror.min/addons.min.js"></script>
+    <script src="./lib/marked.min.js"></script>
+    <script src="./lib/codemirror/addon/search/jump-to-line.js"></script>
+<link href="./css/icon.min.css" rel="stylesheet"><link href="./css/main.min.css" rel="stylesheet"></head>
+
+<body>
+    <div class="logo">
+        <a href="./">
+            <img id="draft-logo" src="img/draft-logo@3x.png" alt="draft-logo">
+        </a>
+    </div>
+
+    <div class="wrapper">
+        <div class="switch">
+            <p>
+                <a href="#" id="on" class="on">ON</a>
+                /
+                <a href="#" id="off">OFF</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="draft-toolbar">
+        <ul class="draft-menu">
+            <li id="undo">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-undo"></use>
+                </svg>
+            </li>
+            <li id="redo">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-redo"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="bold">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-bold"></use>
+                </svg>
+            </li>
+            <li id="italic">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-italic"></use>
+                </svg>
+            </li>
+            <li id="linethrough">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-strikethrough"></use>
+                </svg>
+            </li>
+            <li id="blockquote">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-right"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="uppercase">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-text-uppercase"></use>
+                </svg>
+            </li>
+            <li id="capitalize">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-text-capitalize"></use>
+                </svg>
+            </li>
+            <li id="lowercase">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-text-lowercase"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="h1">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-format-header-"></use>
+                </svg>
+            </li>
+            <li id="h2">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-format-header-1"></use>
+                </svg>
+            </li>
+            <li id="h3">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-formatheader3"></use>
+                </svg>
+            </li>
+            <li id="h4">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-format-header-2"></use>
+                </svg>
+            </li>
+            <li id="h5">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-format-header-3"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="orderedlist">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-orderedlist"></use>
+                </svg>
+            </li>
+            <li id="unorderedlist">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-unorderedlist"></use>
+                </svg>
+            </li>
+            <li id="divider">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-dash"></use>
+                </svg>
+            </li>
+            <li id="toc">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-experiment"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="link">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-link"></use>
+                </svg>
+            </li>
+            <li id="image">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-image"></use>
+                </svg>
+            </li>
+            <li id="inlinecode">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-code"></use>
+                </svg>
+            </li>
+            <li id="codeblock">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-codelibrary"></use>
+                </svg>
+            </li>
+            <li id="table">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-table"></use>
+                </svg>
+            </li>
+            <li id="timestamp">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-calendar"></use>
+                </svg>
+            </li>
+            <li id="emoji">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-smile"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="gotoline">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-right-square-o"></use>
+                </svg>
+            </li>
+            <li id="mdmode">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-edit-square-o"></use>
+                </svg>
+            </li>
+            <li id="premode">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-eye"></use>
+                </svg>
+            </li>
+            <li id="empty">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-delete"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="search">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-search"></use>
+                </svg>
+            </li>
+            <li id="ocr">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-monitor"></use>
+                </svg>
+            </li>
+            <li id="export">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-file-markdown"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="liveserver">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-radarchart"></use>
+                </svg>
+            </li>
+            <li class="divider" unselectable="on">|</li>
+            <li id="howto">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-question"></use>
+                </svg>
+            </li>
+            <li id="about">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-share"></use>
+                </svg>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div id="markdown-container">
+            <textarea id="markdown-area" class="codemirror-textarea"></textarea>
+        </div>
+        <div id="preview-container"></div>
+    </div>
+
+    <script src="./lib/iconfont.min.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+
+
+<script type="text/javascript" src="./js/app.min.js"></script></body>
+
+</html>

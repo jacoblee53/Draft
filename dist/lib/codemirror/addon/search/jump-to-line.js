@@ -19,8 +19,7 @@
   }
 
   var jumpDialog =
-      'Jump to line: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use line:column or scroll% syntax)</span>';
-
+      'Jump to line: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint"></span>';
   function interpretLine(cm, string) {
     var num = Number(string)
     if (/^[-+]/.test(string)) return cm.getCursor().line + num
