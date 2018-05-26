@@ -286,3 +286,83 @@ p.about-info a:hover{
     background: #000;
     color: #fff;
 }
+
+/* CodeBlock Modal */
+
+div#codeblock-selectbar {
+    margin: 10px 0;
+}
+
+div#codeblock-cnt {
+    height: 300px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+div#codeblock-footer a {
+    float: right;
+    padding: 5px 5px;
+    border: 1px solid #000;
+    color: #000;
+    width: 50px;
+    text-align: center;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+div#codeblock-footer a:hover {
+    background: #eee;
+}
+
+div#codeblock-footer:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#codeblock-selectbar {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000;
+    width: 200px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+}
+
+#codeblock-selectbar:after {
+    top: 50%;
+    left: 90%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #000000;
+    border-width: 5px;
+    margin-top: -2px;
+    z-index: 100;
+}
+
+#codeblock-selectbar select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#codeblock-selectbar select:focus {
+    outline: none;
+}

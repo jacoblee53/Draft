@@ -189,6 +189,7 @@ module.exports = {
 
     setAbout: function setAbout() {
         ui.addAboutModal('about-modal');
+
     },
 
     setCodeBlock: function setCodeBlock() {
@@ -223,6 +224,15 @@ module.exports = {
         editor.setValue('');
     },
 
+    setValue: function setValue(mode ,from, to ) {  
+        from.getValue();
+        var cursor = to.getCursor();
+        if (cursor.ch === 0) {
+            to.replaceSelection(`\n\`\`\`${mode}\n${from.getValue()}\n\`\`\``);
+        } else {
+            to.replaceSelection(`\n\n\`\`\`${mode}\n${from.getValue()}\n\`\`\``);
+        }
+    },
 
 }
 

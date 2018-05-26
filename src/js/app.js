@@ -5,6 +5,8 @@ var ui = require('../js/ui');
 var format = require('../js/format');
 
 $(function () {
+
+    // Editor Config
     var codeTextarea = $('.codemirror-textarea')[0];
     var editor = CodeMirror.fromTextArea(codeTextarea, {
         lineNumbers: true,
@@ -27,6 +29,7 @@ $(function () {
             }
         }
     });
+    var codeblockEditor = null;
 
     editor.on('change', function () {
         $('#preview-container').html(marked(editor.getValue()));
@@ -37,6 +40,7 @@ $(function () {
 
     ui.addTooltip();
 
+    // Toolbar Click   
     $('div.draft-toolbar').on('click', 'li', function () {
         editor.focus();
         var func = $(this).attr('id');
@@ -118,6 +122,18 @@ $(function () {
                 break;
             case 'codeblock':
                 format.setCodeBlock();
+                codeblockEditor = CodeMirror.fromTextArea(document.getElementById("codeblock-textarea"), {
+                    lineNumbers: true,
+                    lineWrapping: true,
+                    tabSize: 2,
+                    styleActiveLine: true,
+                    foldGutter: true,
+                    autoCloseTags: true,
+                    autoCloseBrackets: true,
+                    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                    mode: "",
+                    placeholder: "Coding now...",
+                });
                 break;
             case 'export':
                 format.setExport();
@@ -146,9 +162,27 @@ $(function () {
         }
     });
 
+    // Listening to Modal remove.
     $('body').on('click', 'span.close:first', function () {
         $('#myModal').css('display', 'none');
         $('#myModal').remove();
+    });
+
+    $('body').on('click', 'a.cancel', function () {
+        $('#myModal').css('display', 'none');
+        $('#myModal').remove();
+    });
+
+    $('body').on('click', 'a.enter', function () {
+        var mode = $('div#codeblock-selectbar select').find('option:selected').attr('value');
+        format.setValue(mode, codeblockEditor, editor);
+        $('#myModal').css('display', 'none');
+        $('#myModal').remove();
+    });
+
+    $('body').on('change', 'div#codeblock-selectbar select', function () {
+        console.log($('div#codeblock-selectbar select').find('option:selected').attr('mode'));
+        codeblockEditor.setOption('mode', $('div#codeblock-selectbar select').find('option:selected').attr('mode'));
     });
 
     $(window).click(function (e) {
@@ -158,6 +192,7 @@ $(function () {
         }
     });
 
+    // Switch tooltip
     $('div.switch').on('click', 'a:not(.on)', function (index) {
         $('div.switch a.on').removeClass('on');
         $(this).addClass('on');
@@ -168,11 +203,11 @@ $(function () {
         }
     });
 
+    // Drag Modal
     $('body').on('mousedown', 'div.modal', function (e) {
         var isMove = true;
         var div_x = e.pageX - $('div.modal').offset().left;
         var div_y = e.pageY - $('div.modal').offset().top;
-        console.log(div_x + " " + div_y);
         $(document).mousemove(function (e) {
             if (isMove) {
                 var obj = $('div.modal');
