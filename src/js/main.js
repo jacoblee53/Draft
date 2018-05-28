@@ -31,18 +31,21 @@ $(function () {
     });
     var codeblockEditor = null;
 
+    // Render md to html
     editor.on('change', function () {
         $('#preview-container').html(marked(editor.getValue()));
     });
+
     editor.on('blur', function () {
         $(".CodeMirror-cursors").css('visibility', 'visible');
     });
 
     ui.addTooltip();
+    editor.focus();
 
     // Toolbar Click   
     $('div.draft-toolbar').on('click', 'li', function () {
-        editor.focus();
+
         var func = $(this).attr('id');
         switch (func) {
             case 'undo':
@@ -120,6 +123,12 @@ $(function () {
             case 'emoji':
                 format.setEmoji();
                 break;
+            case 'search':
+                format.setSearch(editor);
+                break;
+            case 'gotoline':
+                format.setGoToLine(editor);
+                break;
             case 'codeblock':
                 format.setCodeBlock();
                 codeblockEditor = CodeMirror.fromTextArea(document.getElementById("codeblock-textarea"), {
@@ -134,6 +143,7 @@ $(function () {
                     mode: "",
                     placeholder: "Coding now...",
                 });
+                codeblockEditor.focus();
                 break;
             case 'export':
                 format.setExport();
@@ -141,21 +151,19 @@ $(function () {
             case 'ocr':
                 format.setOCR();
                 break;
-            case 'search':
-                format.setSearch(editor);
-                break;
-            case 'gotoline':
-                format.setGoToLine(editor);
+            case 'toc':
+                format.setTOC(editor);
                 break;
             case 'mdmode':
                 format.setMdMode();
+                editor.focus();
                 break;
             case 'premode':
                 format.setPreMode();
+                editor.focus();
                 break;
             case 'empty':
                 format.setEmpty(editor);
-                console.log('empty');
                 break;
             default:
                 break;
@@ -166,29 +174,45 @@ $(function () {
     $('body').on('click', 'span.close:first', function () {
         $('#myModal').css('display', 'none');
         $('#myModal').remove();
+        editor.focus();
     });
 
     $('body').on('click', 'a.cancel', function () {
         $('#myModal').css('display', 'none');
         $('#myModal').remove();
+        editor.focus();
     });
 
-    $('body').on('click', 'a.enter', function () {
+    $('body').on('click', 'div#codeblock-footer a.enter', function () {
         var mode = $('div#codeblock-selectbar select').find('option:selected').attr('value');
         format.setValue(mode, codeblockEditor, editor);
         $('#myModal').css('display', 'none');
         $('#myModal').remove();
+        editor.focus();
+    });
+
+    $('body').on('click', 'div#table-footer a.enter', function () {
+        var row = $('div#table-cnt input:eq(0)').val();
+        var col = $('div#table-cnt input:eq(1)').val();
+        if (row >= 2 && col >= 1) {
+            format.setTableValue(parseInt(row), parseInt(col), editor);
+        }
+        $('#myModal').css('display', 'none');
+        $('#myModal').remove();
+        editor.focus();
     });
 
     $('body').on('change', 'div#codeblock-selectbar select', function () {
         console.log($('div#codeblock-selectbar select').find('option:selected').attr('mode'));
         codeblockEditor.setOption('mode', $('div#codeblock-selectbar select').find('option:selected').attr('mode'));
+        codeblockEditor.focus();
     });
 
     $(window).click(function (e) {
         if (e.target.id === 'myModal') {
             $('#myModal').css('display', 'none');
             $('#myModal').remove();
+            editor.focus();
         }
     });
 
@@ -201,6 +225,7 @@ $(function () {
         } else if ($(this).attr('id') === 'off') {
             ui.removeTooltip();
         }
+        editor.focus();
     });
 
     // Drag Modal

@@ -17,12 +17,21 @@ module.exports = {
     // Modal
     addTableModal: function addTableModal(newClass) {  
         $('body').append(`    
-            <div id=\"myModal\" class=\"modal ${newClass}\">
-                <div class=\"modal-content\">
-                    <span class=\"close\">&times;</span>
-                    <p>table</p>
+        <div id=\"myModal\" class=\"modal\">
+            <div class=\"modal-content ${newClass}\">
+                <span class=\"close\">&times;</span>
+                <div id=\"table-cnt\">
+                    <span>Row:</span>  
+                    <input id=\"row\" class=\"num-input\" type=\"number\" min=\"2\" max=\"100\" step=\"1\">
+                    <span>Column:</span>
+                    <input class=\"num-input\" type=\"number\" min=\"1\" max=\"100\" step=\"1\">
+                </div>
+                <div id=\"table-footer\">
+                    <a href=\"#\" class=\"enter\">Enter</a>
+                    <a href=\"#\" class=\"cancel\">Cancel</a>
                 </div>
             </div>
+        </div>
         `);
     },
 

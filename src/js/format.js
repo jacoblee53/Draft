@@ -17,6 +17,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 2
         });
+        editor.focus();
     },
 
     setItalic: function setItalic(editor) {
@@ -26,6 +27,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 1
         });
+        editor.focus();
     },
 
     setLineThrough: function setLineThrough(editor) {
@@ -35,6 +37,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 2
         });
+        editor.focus();
     },
 
     setBlockQuote: function setBlockQuote(editor) {
@@ -46,21 +49,25 @@ module.exports = {
             line: cursorLine,
             ch: 0
         });
+        editor.focus();
     },
 
     setUppercase: function setUppercase(editor) {
         var selectionText = editor.getSelection();
         editor.replaceSelection(selectionText.toUpperCase());
+        editor.focus();
     },
 
     setCapitalize: function setCapitalize(editor) {
         var selectionText = editor.getSelection();
         editor.replaceSelection(selectionText.substr(0, 1).toUpperCase() + selectionText.substr(1).toLowerCase());
+        editor.focus();
     },
 
     setLowercase: function setLowercase(editor) {
         var selectionText = editor.getSelection();
         editor.replaceSelection(selectionText.toLowerCase());
+        editor.focus();
     },
 
     setHeader: function setHeader(editor, level) {
@@ -114,14 +121,17 @@ module.exports = {
             default:
                 break;
         }
+        editor.focus();
     },
 
     setOrderedList: function setOrderedList(editor) {
         editor.replaceSelection(`1. ${editor.getSelection()}`);
+        editor.focus();
     },
 
     setUnorderedList: function setUnorderedList(editor) {
         editor.replaceSelection(`- ${editor.getSelection()}`);
+        editor.focus();
     },
 
     setDivider: function setDivider(editor) {
@@ -131,11 +141,12 @@ module.exports = {
         } else {
             editor.replaceSelection('\n\n---------\n\n');
         }
+        editor.focus();
     },
 
-    setTOC: function setTOC() {
+    setTOC: function setTOC(editor) {
         var cursor = editor.getCursor();
-
+        editor.focus();
     },
 
     setMdMode: function setMdMode() {
@@ -159,6 +170,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 11
         });
+        editor.focus();
     },
 
     setImage: function setImage(editor) {
@@ -168,6 +180,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 3
         });
+        editor.focus();
     },
 
     setInlineCode: function setInlineCode(editor) {
@@ -177,6 +190,7 @@ module.exports = {
             line: cursor.line,
             ch: cursor.ch - 1
         });
+        editor.focus();
     },
 
     setTable: function setTable() {
@@ -200,7 +214,7 @@ module.exports = {
         ui.addExportModal('export-modal');
     },
 
-    setOCR: function setOCR() {  
+    setOCR: function setOCR() {
         ui.addOCRModal('ocr-modal');
     },
 
@@ -214,6 +228,7 @@ module.exports = {
 
     setTimestamp: function setTimestamp(editor) {
         editor.replaceSelection(`${editor.getSelection()}${getDate()}`);
+        editor.focus();
     },
 
     setEmoji: function setEmoji() {
@@ -224,13 +239,38 @@ module.exports = {
         editor.setValue('');
     },
 
-    setValue: function setValue(mode ,from, to ) {  
+    setValue: function setValue(mode, from, to) {
         from.getValue();
         var cursor = to.getCursor();
         if (cursor.ch === 0) {
-            to.replaceSelection(`\n\`\`\`${mode}\n${from.getValue()}\n\`\`\``);
+            to.replaceSelection(`\n\`\`\`${mode}\n${from.getValue()}\n\`\`\`\n`);
         } else {
-            to.replaceSelection(`\n\n\`\`\`${mode}\n${from.getValue()}\n\`\`\``);
+            to.replaceSelection(`\n\n\`\`\`${mode}\n${from.getValue()}\n\`\`\`\n`);
+        }
+    },
+
+    setTableValue: function setTableValue(row, col, editor) {
+        var result = "";
+        if (row >= 2 && col >= 1) {
+            for (var i = 0; i < (row + 1); i++) {
+                for (var j = 0; j < col; j++) {
+                    if (i === 1) {
+                        result += '| ------------ | ------------ |\n';
+                        break;
+                    } else {
+                        result += '|   ';
+                    }
+                }
+                if (i !== 1) {
+                    result += '|\n';
+                }
+            }
+        }
+        var cursor = editor.getCursor();
+        if (cursor.ch === 0) {
+            editor.replaceSelection(`\n${result}\n`);
+        } else {
+            editor.replaceSelection(`\n\n${result}\n`);
         }
     },
 

@@ -42,8 +42,16 @@
 
 === 05/26 ===
 
-1. feat: Make modal can be drag anywhere;
+1. feat: Make modal can be dragged anywhere;
 2. feat: Add the about modal;
 3. feat: Add the code block modal;
 
 👆 [05/26](http://oppnkay27.bkt.clouddn.com/20180526152732882120264.png)
+
+=== 05/28 ===
+
+1. fix: Fix the editor focus issue (execCommand);
+2. feat: Complete the table modal;
+3. todo: Add the TOC modal;
+
+👆 [05/28](http://oppnkay27.bkt.clouddn.com/20180528152749719371370.png)

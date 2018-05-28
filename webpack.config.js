@@ -13,7 +13,7 @@ module.exports = {
 
     // Entry
     entry: {
-        app: "./src/js/app.js",
+        main: "./src/js/main.js",
     },
 
     // Output
@@ -124,7 +124,7 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html',
-            chunks: ['app'],
+            chunks: ['main'],
         }),
 
         // jQuery
