@@ -1,14 +1,18 @@
+import "../css/xq-light.scss";
+import "../css/github-markdown.scss";
+import "../css/github-highlight.scss";
 import "../css/iconfont.scss";
 import "../css/main.scss";
 
 var ui = require('../js/ui');
+var keymap = require('../js/keymap');
 var format = require('../js/format');
 
 $(function () {
 
-    // Editor Config
-    var codeTextarea = $('.codemirror-textarea')[0];
-    var editor = CodeMirror.fromTextArea(codeTextarea, {
+    /*=========== CodeMirror Editor Init ===========*/
+
+    var editor = CodeMirror.fromTextArea($('.codemirror-textarea')[0], {
         lineNumbers: true,
         lineWrapping: true,
         tabSize: 2,
@@ -22,28 +26,45 @@ $(function () {
             "Shift-Alt-D": "replaceAll"
         },
         placeholder: "Enjoy Markdown!\n\"They say your attitude determines your latitude. -Kanye West\"",
+        theme: "xq-light",
         mode: {
             name: "gfm",
+            taskLists: true,
             tokenTypeOverrides: {
                 emoji: "emoji"
             }
         }
     });
+
     var codeblockEditor = null;
+
+    init();
+
+
+    
+    /*=========== Event Listener ===========*/
+
+
 
     // Render md to html
     editor.on('change', function () {
         $('#preview-container').html(marked(editor.getValue()));
+        $('pre code').each(function (i, e) {
+            hljs.highlightBlock(e);
+        });
     });
 
     editor.on('blur', function () {
         $(".CodeMirror-cursors").css('visibility', 'visible');
     });
 
-    ui.addTooltip();
-    editor.focus();
+    // Switch tooltip
+    $('div.switch').on('click', 'a:not(.on)', switchTooltip);
 
-    // Toolbar Click   
+    // Load Markdown File
+    $('#md-file').on('change', loadMdFile);
+
+    // Toolbar click   
     $('div.draft-toolbar').on('click', 'li', function () {
 
         var func = $(this).attr('id');
@@ -117,6 +138,9 @@ $(function () {
             case 'howto':
                 format.setHowto();
                 break;
+            case 'load':
+                format.setLoad();
+                break;
             case 'about':
                 format.setAbout();
                 break;
@@ -153,6 +177,7 @@ $(function () {
                 break;
             case 'toc':
                 format.setTOC(editor);
+                // toc();
                 break;
             case 'mdmode':
                 format.setMdMode();
@@ -164,60 +189,55 @@ $(function () {
                 break;
             case 'empty':
                 format.setEmpty(editor);
+                editor.focus();
                 break;
             default:
                 break;
         }
     });
 
-    // Listening to Modal remove.
-    $('body').on('click', 'span.close:first', function () {
-        $('#myModal').css('display', 'none');
-        $('#myModal').remove();
-        editor.focus();
-    });
+    // Dynamic events 
+    $('body').on('click', 'span.close:first', removeModal)
+        .on('click', 'a.cancel', removeModal)
+        .on('mousedown', 'div.modal', dragModal)
+        .on('click', 'div#codeblock-footer a.enter', generateCodeblock)
+        .on('change', 'div#codeblock-selectbar select', selectCodeMode)
+        .on('click', 'div#table-footer a.enter', generateTable)
+        .on('click', 'div.export-to-md', exportToMd)
+        .on('click', 'div.export-to-html', exportToHtml)
+        .on('click', 'div.export-to-pdf', exportToPdf);
 
-    $('body').on('click', 'a.cancel', function () {
-        $('#myModal').css('display', 'none');
-        $('#myModal').remove();
-        editor.focus();
-    });
+    // Keyboard listener
+    $(document).on('keydown', keymap.saveFile)
+                .on('keydown', keymap.loadFile)
+                .on('keydown', keymap.setTable)
+                .on('keydown', {editor: editor}, keymap.mdMode)
+                .on('keydown', {editor: editor}, keymap.preMode)
+                .on('keydown', {editor: editor}, keymap.quit)
+                .on('keydown', {editor: editor}, keymap.insertHeading)
+                .on('keydown', {editor: editor}, keymap.setBold)
+                .on('keydown', {editor: editor}, keymap.setItalicAndImage)
+                .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
 
-    $('body').on('click', 'div#codeblock-footer a.enter', function () {
-        var mode = $('div#codeblock-selectbar select').find('option:selected').attr('value');
-        format.setValue(mode, codeblockEditor, editor);
-        $('#myModal').css('display', 'none');
-        $('#myModal').remove();
-        editor.focus();
-    });
-
-    $('body').on('click', 'div#table-footer a.enter', function () {
-        var row = $('div#table-cnt input:eq(0)').val();
-        var col = $('div#table-cnt input:eq(1)').val();
-        if (row >= 2 && col >= 1) {
-            format.setTableValue(parseInt(row), parseInt(col), editor);
-        }
-        $('#myModal').css('display', 'none');
-        $('#myModal').remove();
-        editor.focus();
-    });
-
-    $('body').on('change', 'div#codeblock-selectbar select', function () {
-        console.log($('div#codeblock-selectbar select').find('option:selected').attr('mode'));
-        codeblockEditor.setOption('mode', $('div#codeblock-selectbar select').find('option:selected').attr('mode'));
-        codeblockEditor.focus();
-    });
 
     $(window).click(function (e) {
         if (e.target.id === 'myModal') {
-            $('#myModal').css('display', 'none');
-            $('#myModal').remove();
-            editor.focus();
+            removeModal();
         }
     });
 
-    // Switch tooltip
-    $('div.switch').on('click', 'a:not(.on)', function (index) {
+
+
+    /*=========== Functions  ===========*/
+
+
+    
+    function init() {
+        ui.addTooltip();
+        editor.focus();
+    }
+
+    function switchTooltip() {
         $('div.switch a.on').removeClass('on');
         $(this).addClass('on');
         if ($(this).attr('id') === 'on') {
@@ -226,10 +246,24 @@ $(function () {
             ui.removeTooltip();
         }
         editor.focus();
-    });
+    }
 
-    // Drag Modal
-    $('body').on('mousedown', 'div.modal', function (e) {
+    function loadMdFile() {
+        var reader = new FileReader();
+        var txt = document.getElementById('md-file').files[0];
+        reader.readAsText(txt);
+        reader.onload = function () {
+            editor.setValue(this.result);
+        };
+    }
+
+    function removeModal() {
+        $('#myModal').css('display', 'none');
+        $('#myModal').remove();
+        editor.focus();
+    }
+
+    function dragModal(e) {
         var isMove = true;
         var div_x = e.pageX - $('div.modal').offset().left;
         var div_y = e.pageY - $('div.modal').offset().top;
@@ -246,6 +280,80 @@ $(function () {
             function (e) {
                 isMove = false;
             });
-    });
+    }
+
+    function selectCodeMode() {
+        console.log($('div#codeblock-selectbar select').find('option:selected').attr('mode'));
+        codeblockEditor.setOption('mode', $('div#codeblock-selectbar select').find('option:selected').attr('mode'));
+        codeblockEditor.focus();
+    }
+
+    function generateCodeblock() {
+        var mode = $('div#codeblock-selectbar select').find('option:selected').attr('value');
+        format.setValue(mode, codeblockEditor, editor);
+        removeModal();
+    }
+
+    function generateTable() {
+        var row = $('div#table-cnt input:eq(0)').val();
+        var col = $('div#table-cnt input:eq(1)').val();
+        if (row >= 2 && col >= 1) {
+            format.setTableValue(parseInt(row), parseInt(col), editor);
+        }
+        removeModal();
+    }
+
+    function save(code, name) {
+        var blob = new Blob([code], {
+            type: 'text/plain'
+        });
+        if (window.saveAs) {
+            window.saveAs(blob, name);
+        } else if (navigator.saveBlob) {
+            navigator.saveBlob(blob, name);
+        } else {
+            var url = URL.createObjectURL(blob);
+            var link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", name);
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+            link.dispatchEvent(event);
+        }
+    }
+
+    function exportToMd() {
+        save(editor.getValue(), "untitled.md");
+        removeModal();
+    }
+
+    function exportToHtml() {
+        save($('div#preview-container').html(), "untitled.html");
+        removeModal();
+    }
+
+    function exportToPdf() {
+        var opt = {
+            margin: 1,
+            filename: 'untitled.pdf',
+            "fit-to-width": true,
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2,
+                letterRendering: false,
+                useCORS: true,
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+        html2pdf().from($('div#preview-container').html()).set(opt).save();
+        removeModal();
+    }
 
 });

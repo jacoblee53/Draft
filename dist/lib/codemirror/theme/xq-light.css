@@ -31,13 +31,13 @@ THE SOFTWARE.
 .cm-s-xq-light span.cm-operator {}
 .cm-s-xq-light span.cm-comment { color: #0080FF; font-style: italic; }
 .cm-s-xq-light span.cm-string { color: red; }
-.cm-s-xq-light span.cm-meta { color: yellow; }
+.cm-s-xq-light span.cm-meta { color: rgb(255, 191, 0); }
 .cm-s-xq-light span.cm-qualifier { color: grey; }
 .cm-s-xq-light span.cm-builtin { color: #7EA656; }
-.cm-s-xq-light span.cm-bracket { color: #cc7; }
+.cm-s-xq-light span.cm-bracket { color: rgb(175, 175, 100); }
 .cm-s-xq-light span.cm-tag { color: #3F7F7F; }
 .cm-s-xq-light span.cm-attribute { color: #7F007F; }
 .cm-s-xq-light span.cm-error { color: #f00; }
 
 .cm-s-xq-light .CodeMirror-activeline-background { background: #e8f2ff; }
-.cm-s-xq-light .CodeMirror-matchingbracket { outline:1px solid grey;color:black !important;background:yellow; }
+.cm-s-xq-light .CodeMirror-matchingbracket { outline:1px solid grey;color:black !important;background:rgb(255, 191, 0); }

@@ -108,7 +108,10 @@ module.exports = {
         new transferWebpackPugin([{
             from: "lib",
             to: "lib"
-        },], path.resolve(__dirname, "src")),
+        },{
+            from: "md",
+            to: "md"
+        }], path.resolve(__dirname, "src")),
 
         new cleanWebpackPlugin([
             'dist/css',

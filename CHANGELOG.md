@@ -1,5 +1,11 @@
 # CHANGELOG
 
+🔥 Name: Draft
+
+🔥 Description: Online Markdown Editor!
+
+🔥 Version: v1.0.0
+
 === 05/17 ===
 
 1. Inital commit;
@@ -52,6 +58,20 @@
 
 1. fix: Fix the editor focus issue (execCommand);
 2. feat: Complete the table modal;
-3. todo: Add the TOC modal;
+3. todo: Add the TOC function;
 
 👆 [05/28](http://oppnkay27.bkt.clouddn.com/20180528152749719371370.png)
+
+=== 05/30 05/31 ===
+
+1. feat: Add the export modal (export to md, html, pdf);
+2. feat: Complete the TOC function;
+3. style: Set the github-markdown-css;
+4. refactor: Refactor;
+5. feat: Add the load modal (load .md file from the local file);
+6. docs: Add the example.md;
+7. style: Change theme defalut to xq-light;
+8. style: Highlight the code block (highlight.js);
+9. feat: Add keyboard shorcuts (keymap.js);
+
+👆 [05/31 05/31](http://oppnkay27.bkt.clouddn.com/20180531152773614665604.png)

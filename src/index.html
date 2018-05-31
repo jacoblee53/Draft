@@ -195,9 +195,14 @@
                     <use xlink:href="#icon-monitor"></use>
                 </svg>
             </li>
+            <li id="load">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-folder-open"></use>
+                </svg>
+            </li>
             <li id="export">
                 <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-file-markdown"></use>
+                    <use xlink:href="#icon-save"></use>
                 </svg>
             </li>
             <li class="divider" unselectable="on">|</li>
@@ -220,15 +225,21 @@
         </ul>
     </div>
 
+
+
     <div class="container">
         <div id="markdown-container">
             <textarea id="markdown-area" class="codemirror-textarea"></textarea>
         </div>
-        <div id="preview-container"></div>
+        <div class="markdown-body" id="preview-container"></div>
     </div>
 
-    <script src="./lib/iconfont.min.js"></script>
+    <input accept="text/plain" type="file" id="md-file" style="filter:alpha(opacity=0);opacity:0;width: 0;height: 0;" />
+
     <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/highlight.pack.js"></script>
+    <script src="./lib/html2pdf.bundle.min.js"></script>
+    <script src="./lib/iconfont.min.js"></script>
 
 
 </body>

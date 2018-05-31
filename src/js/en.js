@@ -38,6 +38,7 @@ module.exports = {
         liveserver:     'live-server',
         howto:          'how-to',
         about:          'about',
+        load:           'load',
     }
 };
 

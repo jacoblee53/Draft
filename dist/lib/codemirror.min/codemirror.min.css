@@ -2,7 +2,7 @@
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  font-family:  'Fira Mono', monospace, 'Quicksand';
+  font-family:  'Source Code Pro', monospace, 'Fira Mono', monospace, 'Quicksand';
   height: 100%;
   width: 100%;
   font-size: 12px;

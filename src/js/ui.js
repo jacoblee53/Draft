@@ -14,7 +14,7 @@ module.exports = {
         $('ul.draft-menu li:not(.divider) span').remove();
     },
 
-    // Modal
+    // Add the  Modal
     addTableModal: function addTableModal(newClass) {  
         $('body').append(`    
         <div id=\"myModal\" class=\"modal\">
@@ -145,10 +145,30 @@ module.exports = {
 
     addExportModal: function addExportModal(newClass) {
         $('body').append(`    
-            <div id=\"myModal\" class=\"modal ${newClass}\">
-                <div class=\"modal-content\">
+            <div id=\"myModal\" class=\"modal\">
+                <div class=\"modal-content ${newClass}\">
                     <span class=\"close\">&times;</span>
-                    <p>export</p>
+                    <span class=\"export-title\">Save As</span>
+                    <div class=\"export-cnt\">
+                        <div class=\"export-to-md\">
+                            <svg class=\"export-icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-file-markdown\"></use>
+                            </svg>
+                            <span>Markdown</span>
+                        </div>
+                        <div class=\"export-to-html\">
+                            <svg class=\"export-icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-file-text\"></use>
+                            </svg>
+                            <span>HTML</span>
+                        </div>
+                        <div class=\"export-to-pdf\">
+                            <svg class=\"export-icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-file-pdf\"></use>
+                            </svg>
+                            <span>PDF</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         `);

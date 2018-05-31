@@ -214,6 +214,10 @@ module.exports = {
         ui.addExportModal('export-modal');
     },
 
+    setLoad: function setLoad() {  
+        $('#md-file').trigger('click');
+    },
+
     setOCR: function setOCR() {
         ui.addOCRModal('ocr-modal');
     },
@@ -274,7 +278,21 @@ module.exports = {
         }
     },
 
-}
+    selectLine: function (editor) {  
+        var cursor = editor.getCursor();
+        editor.setSelection(
+            {
+                line: cursor.line,
+                ch: 0
+            },
+            {
+                line: cursor.line,
+                ch: cursor.ch
+            }
+        );
+    },
+
+};
 
 function getDate() {
     var d = new Date();

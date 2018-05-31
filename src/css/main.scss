@@ -1,5 +1,10 @@
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
+    height: 100%;
     background: #fff;
 }
 
@@ -23,7 +28,8 @@ img#draft-logo:hover {
 
 div.container {
     width: 80%;
-    height: 450px;
+    // height: 470px;
+    height: 70%;
     margin: 0 auto;
     box-sizing: border-box;
     border: 1px solid #000;
@@ -67,7 +73,7 @@ div.container {
     background: #fff;
     box-sizing: border-box;
     float: left;
-    padding-left: 10px;
+    padding: 10px;
     overflow: auto;
     overflow-x: hidden;
 }
@@ -78,9 +84,8 @@ div.container {
 }
 
 .preview-container-premode {
-    width: 100%;
+    width: 100%!important;
 }
-
 
 /* Toolbar */
 
@@ -182,7 +187,7 @@ div.wrapper {
 div.switch {
     font-weight: bold;
     font-size: 0.65em;
-    
+    font-family: 'Montserrat', sans-serif;
 }
 
 div.switch p {
@@ -213,6 +218,7 @@ a.on {
 /* Modal */
 
 .modal {
+    font-family: 'Montserrat', sans-serif;
     position: fixed; 
     z-index: 99999; 
     padding-top: 250px; 
@@ -413,4 +419,51 @@ div#table-footer:after {
     content: "";
     display: block;
     clear: both;
+}
+
+/* Export Modal */
+
+span.export-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.7em;
+    line-height: 1.3;
+    text-align: center;
+    margin-top: 5px;
+}
+
+div.export-modal {
+    font-family: 'Montserrat', sans-serif;
+    width: 340px;
+}
+
+div.export-cnt {
+    margin: 15px auto;
+    text-align: center;
+}
+
+div.export-cnt div {
+    display: inline-block;
+    width: 95px;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+div.export-cnt span {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+div.export-cnt div:hover {
+    color: #aaa;
+}
+
+.export-icon {
+    display: block;
+    width: 2.8em;
+    height: 2.8em;
+    margin: 0 auto 6px;
+    fill: currentColor;
+    overflow: hidden;
 }
