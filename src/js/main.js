@@ -220,11 +220,11 @@ $(function () {
                 .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
 
 
-    $(window).click(function (e) {
-        if (e.target.id === 'myModal') {
-            removeModal();
-        }
-    });
+    // $(window).click(function (e) {
+    //     if (e.target.id === 'myModal') {
+    //         removeModal();
+    //     }
+    // });
 
 
 

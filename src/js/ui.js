@@ -60,6 +60,8 @@ module.exports = {
                 </p>
                 <p class=\"about-link\">
                     <a href=\"https://github.com/oddisland/Draft\" target=\"_blank\">https://github.com/oddisland/Draft</a>
+                    <br>
+                    <a href=\"mailto:toby.islanddd@gmail.com?subject=[ issue ] [ description ]\">Contact Me!</a>
                 </p>
                 <p class=\"about-info\">
                     Copyright © 2018

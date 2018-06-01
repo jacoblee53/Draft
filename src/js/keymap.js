@@ -28,9 +28,9 @@ module.exports = {
         if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
             if ($('div.export-modal').length === 0) {
                 format.setExport();
-            } 
+            }
             e.preventDefault();
-            e.stopPropagation();  
+            e.stopPropagation();
             return false;
         }
     },
@@ -61,75 +61,82 @@ module.exports = {
         }
     },
 
-    setBold: function setBold(e, editor) {  
-        if ((e.ctrlKey || e.metaKey)) {    
-            if(e.keyCode === 66) {
-                format.setBold(e.data.editor);
-                e.preventDefault();
-                return false;
-            }
-        }
-    },
-
-    setItalicAndImage: function setItalicAndImage(e, editor) {  
-        if (e.keyCode === 73 && (e.ctrlKey || e.metaKey)) {    
-            if(!e.shiftKey) {
-                format.setItalic(e.data.editor);                    
-            } else if(e.shiftKey){
-                format.setImage(e.data.editor); 
-            }
+    setBold: function setBold(e, editor) {
+        if ((e.ctrlKey || e.metaKey) && e.keyCode === 66) {
+            format.setBold(e.data.editor);
             e.preventDefault();
-            e.stopPropagation();  
             return false;
         }
     },
 
-    setLinkAndSelect: function setLinkAndSelect(e, editor) {  
+    setItalicAndImage: function setItalicAndImage(e, editor) {
+        if (e.keyCode === 73 && (e.ctrlKey || e.metaKey)) {
+            if (!e.shiftKey) {
+                format.setItalic(e.data.editor);
+            } else if (e.shiftKey) {
+                format.setImage(e.data.editor);
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    },
+
+    setLinkAndSelect: function setLinkAndSelect(e, editor) {
         if ((e.ctrlKey || e.metaKey) && e.keyCode === 76) {
-            if(e.shiftKey)  {
+            if (e.shiftKey) {
                 format.setLink(e.data.editor);
-            } else if(!e.shiftKey){
+            } else if (!e.shiftKey) {
                 format.selectLine(e.data.editor);
             }
-            e.stopPropagation();  
+            e.stopPropagation();
             e.preventDefault();
             return false;
         }
     },
 
-    setTable: function setTable(e) {  
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey) {    
-                if(e.keyCode === 84 ){
-                    format.setTable();
-                    e.preventDefault();
-                    return false;
-                }  
-        }
-    },
-
-
-    insertHeading: function insertHeading(e, editor) {  
-        if ((e.ctrlKey || e.metaKey)) {           
-            if(e.keyCode === 49) {
-                format.setHeader(e.data.editor, 1);
-            } else if (e.keyCode === 50) {
-                format.setHeader(e.data.editor, 2);
-            } else if (e.keyCode === 51) {
-                format.setHeader(e.data.editor, 3);
-            } else if (e.keyCode === 52) {
-                format.setHeader(e.data.editor, 4);
-            } else if (e.keyCode === 53) {
-                format.setHeader(e.data.editor, 5);
-            }
+    setTable: function setTable(e) {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 84) {
+            format.setTable();
             e.preventDefault();
-            e.stopPropagation();  
             return false;
         }
     },
-    
 
-    quit: function quit(e, editor) {  
-        if(e.keyCode == 27) {
+
+    insertHeading: function insertHeading(e, editor) {
+        if ((e.ctrlKey || e.metaKey) && e.keyCode === 49) {
+            format.setHeader(e.data.editor, 1);
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        } else if ((e.ctrlKey || e.metaKey) && e.keyCode === 50) {
+            format.setHeader(e.data.editor, 2);
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        } else if ((e.ctrlKey || e.metaKey) && e.keyCode === 51) {
+            format.setHeader(e.data.editor, 3);
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        } else if ((e.ctrlKey || e.metaKey) && e.keyCode === 52) {
+            format.setHeader(e.data.editor, 4);
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        } else if ((e.ctrlKey || e.metaKey) && e.keyCode === 53) {
+            format.setHeader(e.data.editor, 5);
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+
+    },
+
+
+    quit: function quit(e, editor) {
+        if (e.keyCode == 27) {
             $('#myModal').css('display', 'none');
             $('#myModal').remove();
             e.data.editor.focus();
