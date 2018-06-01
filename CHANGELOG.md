@@ -75,3 +75,11 @@
 9. feat: Add keyboard shorcuts (keymap.js);
 
 👆 [05/31 05/31](http://oppnkay27.bkt.clouddn.com/20180531152773614665604.png)
+
+=== 06/01 ===
+
+1. fix: Fix the keymap issue;
+2. feat: Add the contact me link;
+3. feat: Use the web server (app.js);
+
+👆 [06/01](http://)
