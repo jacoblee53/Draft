@@ -68,6 +68,9 @@ $(function () {
     $('div.draft-toolbar').on('click', 'li', function () {
 
         var func = $(this).attr('id');
+        while($('div.modal').length){
+            removeModal();
+        }
         switch (func) {
             case 'undo':
                 format.undo(editor);
@@ -199,7 +202,7 @@ $(function () {
     // Dynamic events 
     $('body').on('click', 'span.close:first', removeModal)
         .on('click', 'a.cancel', removeModal)
-        .on('mousedown', 'div.modal', dragModal)
+        .on('mousedown', 'div.modal-head', dragModal)
         .on('click', 'div#codeblock-footer a.enter', generateCodeblock)
         .on('change', 'div#codeblock-selectbar select', selectCodeMode)
         .on('click', 'div#table-footer a.enter', generateTable)
@@ -269,16 +272,18 @@ $(function () {
         var div_y = e.pageY - $('div.modal').offset().top;
         $(document).mousemove(function (e) {
             if (isMove) {
-                var obj = $('div.modal');
-                obj.css({
+                $('div.modal').css({
                     "left": e.pageX - div_x,
                     "top": e.pageY - div_y,
                     "cursor": 'move'
                 });
             }
         }).mouseup(
-            function (e) {
+            function () {
                 isMove = false;
+                $('div.modal').css({
+                    "cursor": 'default'
+                });
             });
     }
 

@@ -20,6 +20,7 @@ module.exports = {
         <div id=\"myModal\" class=\"modal\">
             <div class=\"modal-content ${newClass}\">
                 <span class=\"close\">&times;</span>
+                <div class=\"modal-head\"></div>
                 <div id=\"table-cnt\">
                     <span>Row:</span>  
                     <input id=\"row\" class=\"num-input\" type=\"number\" min=\"2\" max=\"100\" step=\"1\">
@@ -37,12 +38,135 @@ module.exports = {
 
     addHowtoModal: function addHowtoModal(newClass) {
         $('body').append(`    
-            <div id=\"myModal\" class=\"modal ${newClass}\">
-                <div class=\"modal-content\">
-                    <span class=\"close\">&times;</span>
-                    <p>howto</p>
+        <div id=\"myModal\" class=\"modal\">
+            <div class=\"modal-content ${newClass}\">
+                <span class=\"close\">&times;</span>
+                <div class=\"modal-head\"></div>
+                <div class=\"how-cnt\">
+
+                    <div class=\"how-mdsyntax-cnt\">
+                        <div class=\"how-title\">Markdown syntax tutorial</div>
+                        <ul>
+                            <li>
+                                <a target=\"_blank\" href=\"http://daringfireball.net/projects/markdown/syntax/\">Markdown Syntax</a>
+                            </li>
+                            <li>
+                                <a target=\"_blank\" href=\"https://guides.github.com/features/mastering-markdown/\">Mastering Markdown</a>
+                            </li>
+                            <li>
+                                <a target=\"_blank\" href=\"https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/\">Markdown Basics</a>
+                            </li>
+                            <li>
+                                <a target=\"_blank\" href=\"https://help.github.com/categories/writing-on-github/\">GitHub Flavored Markdown</a>
+                            </li>
+                            <li>
+                                <a target=\"_blank\" href=\"https://www.appinn.com/markdown/\">Markdown语法说明 (简体中文)</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class=\"how-keyshortcuts-cnt\">
+                        <div class=\"how-title\">Keyboard shortcuts</div>
+                        <table class=\"how-tb\">
+                            <thead>
+                                <th>Keyboard shortcuts</th>
+                                <th>Description</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Esc</td>
+                                    <td>Quit</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + B / Command + B</td>
+                                    <td>Bold</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + I / Command + I</td>
+                                    <td>Italic</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + L / Command + L</td>
+                                    <td>Select current line</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Y / Command + Y</td>
+                                    <td>Redo</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Z / Command + Z</td>
+                                    <td>Undo</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + S / Command + S</td>
+                                    <td>Export</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + 1~5 / Command + 1~5</td>
+                                    <td>Heading 1~5</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Alt + D</td>
+                                    <td>Replace</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Alt + D</td>
+                                    <td>Replace all</td>
+                                </tr>
+                                <tr>
+                                    <td>Alt + F</td>
+                                    <td>Search</td>
+                                </tr>
+                                <tr>
+                                    <td>Alt + G</td>
+                                    <td>Go to line</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Command + E</td>
+                                    <td>Markdown mode</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Command + P</td>
+                                    <td>Preview mode</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Command + L</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Command + I</td>
+                                    <td>Image</td>
+                                </tr>
+                                <tr>
+                                    <td>Shift + Command + T</td>
+                                    <td>Table</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class=\"how-referlink-cnt\">
+                        <div class=\"how-title\">Flowchart reference</div>
+                        <p>
+                            <a target=\"_blank\" href=\"http://adrai.github.io/flowchart.js/\">http://adrai.github.io/flowchart.js/</a>
+                        </p>
+
+                        <div class=\"how-title\">SequenceDiagram reference</div>
+                        <p>
+                            <a target=\"_blank\" href=\"http://bramp.github.io/js-sequence-diagrams/\">http://bramp.github.io/js-sequence-diagrams/</a>
+                        </p>
+
+                        <div class=\"how-title\">TeX/LaTeX reference</div>
+                        <p>
+                            <a target=\"_blank\" href=\"http://meta.wikimedia.org/wiki/Help:Formula\">http://meta.wikimedia.org/wiki/Help:Formula</a>
+                        </p>
+                    </div>
+
+
                 </div>
             </div>
+        </div>
         `);
     },
 
@@ -51,6 +175,7 @@ module.exports = {
         <div id=\"myModal\" class=\"modal\">
             <div class=\"modal-content ${newClass}\">
                 <span class=\"close\">&times;</span>
+                <div class=\"modal-head\"></div>
                 <h1 class=\"about-h1\">
                     Draft
                     <small>v1.0.0</small>
@@ -91,6 +216,7 @@ module.exports = {
         <div id=\"myModal\" class=\"modal\">
             <div class=\"modal-content ${newClass}\">
                 <span class=\"close\">&times;</span>
+                <div class=\"modal-head\"></div>
                 <div id=\"codeblock-selectbar\">
                     <select>
                         <option selected=\"selected\" value=\"\">Choose a language mode</option>
@@ -150,6 +276,7 @@ module.exports = {
             <div id=\"myModal\" class=\"modal\">
                 <div class=\"modal-content ${newClass}\">
                     <span class=\"close\">&times;</span>
+                    <div class=\"modal-head\"></div>
                     <span class=\"export-title\">Save As</span>
                     <div class=\"export-cnt\">
                         <div class=\"export-to-md\">
