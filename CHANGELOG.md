@@ -83,3 +83,11 @@
 3. feat: Use the web server (app.js);
 
 👆 [06/01](http://)
+
+=== 06/02 ===
+
+1. feat: Add the howto modal;
+2. fix: Fix the drag modal bug(modal-head);
+3. fix: Fix the toolbar click issue(remove modal while modal exists);
+
+👆 [06/02](http://oppnkay27.bkt.clouddn.com/20180603152795597886462.png)

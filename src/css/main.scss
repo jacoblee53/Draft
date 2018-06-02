@@ -1,10 +1,6 @@
-html {
-    height: 100%;
-}
-
 body {
     margin: 0;
-    height: 100%;
+    min-width: 888px;
     background: #fff;
 }
 
@@ -28,8 +24,8 @@ img#draft-logo:hover {
 
 div.container {
     width: 80%;
-    // height: 470px;
-    height: 70%;
+    height: 470px;
+    // height: 70%;
     margin: 0 auto;
     box-sizing: border-box;
     border: 1px solid #000;
@@ -221,13 +217,11 @@ a.on {
     font-family: 'Montserrat', sans-serif;
     position: fixed; 
     z-index: 99999; 
-    padding-top: 250px; 
-    padding-left: 15%;
-    left: 0;
-    top: 0;
-    width: 40%; 
-    height: 100%; 
+    left: 15%;
+    top: 28%;
+    width: 40%;  
     overflow: auto; 
+    overflow-x: hidden;
 }
 
 /* Modal Content */
@@ -238,6 +232,11 @@ a.on {
     padding: 5px 15px;
     border: 2px solid #000;
     width: 80%;
+}
+
+div.modal-head {
+    width: 100%;
+    height: 20px;
 }
 
 /* The Close Button */
@@ -266,6 +265,7 @@ a.on {
 
 .about-h1 {
     font-size: 25px;
+    margin-top: 0;
 }
 
 .about-h1 small {
@@ -297,7 +297,7 @@ p.about-info a:hover{
 /* CodeBlock Modal */
 
 div#codeblock-selectbar {
-    margin: 10px 0;
+    margin:0 0 10px;
 }
 
 div#codeblock-cnt {
@@ -378,7 +378,7 @@ div#codeblock-footer:after {
 div#table-cnt {
     width: 90%;
     text-align: center;
-    margin: 30px auto 20px;
+    margin: 10px auto 25px;
 }
 
 div#table-cnt span {
@@ -429,12 +429,11 @@ span.export-title {
     font-size: 1.7em;
     line-height: 1.3;
     text-align: center;
-    margin-top: 5px;
 }
 
 div.export-modal {
     font-family: 'Montserrat', sans-serif;
-    width: 340px;
+    // width: 340px;
 }
 
 div.export-cnt {
@@ -466,4 +465,60 @@ div.export-cnt div:hover {
     margin: 0 auto 6px;
     fill: currentColor;
     overflow: hidden;
+}
+
+/* How Modal */
+
+div.how-cnt {
+    height: 300px;
+    overflow: auto;
+    width: 100%;
+}
+
+div.how-keyshortcuts-cnt, div.how-referlink-cnt {
+    margin-top: 40px;
+}
+
+div.how-title{
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0 0 20px;
+}
+
+div.how-cnt ul {
+    margin: 0;
+    list-style: square;
+    list-style-position: outside;
+    padding-left: 20px;
+}
+
+div.how-cnt ul > li {
+    margin-bottom: 4px;
+}
+
+div.how-cnt a {
+    text-decoration: underline;
+    font-size: 0.88em;
+    padding: 1px 6px;
+    color: #000;
+}
+
+div.how-cnt a:hover {
+    background: #000;
+    color: #fff;
+}
+
+table.how-tb {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+table.how-tb td,th{
+    text-align: left;
+    border: 2px solid #000;
+    padding: 5px;
+}
+
+table.how-tb td {
+    font-size: 0.8em;
 }
