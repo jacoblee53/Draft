@@ -239,6 +239,10 @@ module.exports = {
         ui.addEmojiModal('emoji-modal');
     },
 
+    setImglink: function () {  
+        ui.addImglinkModal('imglink-modal');
+    },
+
     setEmpty: function setEmpty(editor) {
         editor.setValue('');
     },

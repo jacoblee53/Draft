@@ -98,6 +98,10 @@ module.exports = {
                                     <td>Undo</td>
                                 </tr>
                                 <tr>
+                                    <td>Ctrl + O / Command + O</td>
+                                    <td>Import</td>
+                                </tr>
+                                <tr>
                                     <td>Ctrl + S / Command + S</td>
                                     <td>Export</td>
                                 </tr>
@@ -186,7 +190,7 @@ module.exports = {
                 <p class=\"about-link\">
                     <a href=\"https://github.com/oddisland/Draft\" target=\"_blank\">https://github.com/oddisland/Draft</a>
                     <br>
-                    <a href=\"mailto:toby.islanddd@gmail.com?subject=[ issue ] [ description ]\">Contact Me!</a>
+                    <a href=\"mailto:toby.islanddd@gmail.com?subject=[ issue ] [ description ]\">Contact Me !</a>
                 </p>
                 <p class=\"about-info\">
                     Copyright © 2018
@@ -208,6 +212,35 @@ module.exports = {
                     <p>Emoji</p>
                 </div>
             </div>
+        `);
+    },
+
+    addImglinkModal: function addImglinkModal(newClass) {
+        $('body').append(`    
+        <div id="myModal" class="modal">
+            <div class="modal-content ${newClass}">
+                <span class="close">&times;</span>
+                <div class="modal-head"></div>
+                <div class="imglink-cnt">
+                    <div class="label-box">
+                        <label for="file">Browser Image ...</label>
+                    </div>
+                    <input type="file" accept="image/*" id="file" name="image">
+                    <div class="info">
+                        <img class='file-img' src="#" >
+                        <p class="status">HERE IS YOUR IMGAE!</p>
+                        <p class="img-link"></p>
+                        <p class="file-info"></p>
+                    </div>
+                </div>
+                
+                <div class="imglink-footer">
+                    <div class="smms">@ SM.MS</div>
+                    <a class="upload-btn btn">Upload</a>
+                    <a class="remove-btn btn">Remove</a>
+                </div>
+            </div>
+        </div>
         `);
     },
 

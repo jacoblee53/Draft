@@ -70,7 +70,7 @@ module.exports = {
     },
 
     setItalicAndImage: function setItalicAndImage(e, editor) {
-        if (e.keyCode === 73 && (e.ctrlKey || e.metaKey)) {
+        if (e.keyCode === 73 && (e.ctrlKey || e.metaKey) && !e.altKey) {
             if (!e.shiftKey) {
                 format.setItalic(e.data.editor);
             } else if (e.shiftKey) {

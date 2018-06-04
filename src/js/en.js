@@ -39,6 +39,7 @@ module.exports = {
         howto:          'how-to',
         about:          'about',
         load:           'load',
+        imglink:        'img-link',
     }
 };
 

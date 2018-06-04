@@ -178,9 +178,11 @@ $(function () {
             case 'ocr':
                 format.setOCR();
                 break;
+            case 'imglink':
+                format.setImglink();
+                break;
             case 'toc':
                 format.setTOC(editor);
-                // toc();
                 break;
             case 'mdmode':
                 format.setMdMode();
@@ -208,20 +210,27 @@ $(function () {
         .on('click', 'div#table-footer a.enter', generateTable)
         .on('click', 'div.export-to-md', exportToMd)
         .on('click', 'div.export-to-html', exportToHtml)
-        .on('click', 'div.export-to-pdf', exportToPdf);
+        .on('click', 'div.export-to-pdf', exportToPdf)
+        .on('click', 'a.remove-btn', removeImglinkInfo)
+        .on('click', 'p.img-link', copyImglink)
+        .on('change', 'input#file', loadNewImg)
+        .on('click', 'a.upload-btn', uploadImg)
+        .on('click', 'div.smms', function () {
+            window.open("https://sm.ms/");
+        });
 
     // Keyboard listener
     $(document).on('keydown', keymap.saveFile)
-                .on('keydown', keymap.loadFile)
-                .on('keydown', keymap.setTable)
-                .on('keydown', {editor: editor}, keymap.mdMode)
-                .on('keydown', {editor: editor}, keymap.preMode)
-                .on('keydown', {editor: editor}, keymap.quit)
-                .on('keydown', {editor: editor}, keymap.insertHeading)
-                .on('keydown', {editor: editor}, keymap.setBold)
-                .on('keydown', {editor: editor}, keymap.setItalicAndImage)
-                .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
-
+            .on('keydown', keymap.loadFile)
+            .on('keydown', keymap.setTable)
+            .on('keydown', {editor: editor}, keymap.mdMode)
+            .on('keydown', {editor: editor}, keymap.preMode)
+            .on('keydown', {editor: editor}, keymap.quit)
+            .on('keydown', {editor: editor}, keymap.insertHeading)
+            .on('keydown', {editor: editor}, keymap.setBold)
+            .on('keydown', {editor: editor}, keymap.setItalicAndImage)
+            .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
+    
 
     // $(window).click(function (e) {
     //     if (e.target.id === 'myModal') {
@@ -230,7 +239,7 @@ $(function () {
     // });
 
 
-
+    
     /*=========== Functions  ===========*/
 
 
@@ -359,6 +368,81 @@ $(function () {
         };
         html2pdf().from($('div#preview-container').html()).set(opt).save();
         removeModal();
+    }
+
+    function removeImglinkInfo() {  
+        $('input#file').val('');
+        $('div.info p.status').text('HERE IS YOUR IMGAE!');
+        $('img.file-img').attr('src', '');
+        $('img.file-img').css('display', 'none');
+        $('p.img-link').html('');
+        $('p.file-info').html('');
+    }
+
+    function copyImglink() {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(this).text()).select();
+        document.execCommand("copy");
+        alert('Copy Markdown: ' + $temp.val());
+        $temp.remove();
+    }
+
+    function loadNewImg() {  
+        var file = document.getElementById('file').files[0];
+        var name = file.name;
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            $('img.file-img').css('display', 'block');
+            $('img.file-img').attr('src', reader.result);
+            $('div.info p.status').text('');
+        };
+    }
+
+    function uploadImg() {  
+        if (!$('input#file').val()) {
+            alert('Please choose your img!');
+        }
+        if ($('input#file').val()) {
+            var file = document.getElementById('file').files[0];
+            var formData = new FormData();
+            formData.append('smfile', file);
+            $.ajax({
+                    url: 'https://sm.ms/api/upload',
+                    data: formData,
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        $('p.status').text('Uploading...');
+                    },
+                    success: function (res) {
+
+                        $('div.info p.status').text('');
+                        $('p.img-link').html(`![${res.data.filename}](${res.data.url})`);
+                        $('p.file-info').html(`
+                            <span>Name: ${res.data.filename}</span><br> 
+                            <span>Store Name: ${res.data.storename}</span><br> 
+                            <span>File Size: ${res.data.size}</span><br>
+                            <span>Image Size: ${res.data.width} x ${res.data.height}</span><br>
+                            <span>Hash: ${res.data.hash}</span><br>
+                            <span>Url: ${res.data.url}</span>
+                        `);
+
+                        console.log(res.data.url);
+                    },
+                    error: function (res) {
+                        $('div.info p.status').text('Error!');
+                    }
+                })
+                .fail(function () {
+                    console.log('Fail!');
+                })
+                .always(function () {
+                    console.log('Done!');
+                });
+        }
     }
 
 });

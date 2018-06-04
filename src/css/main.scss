@@ -24,8 +24,7 @@ img#draft-logo:hover {
 
 div.container {
     width: 80%;
-    height: 470px;
-    // height: 70%;
+    height: 470px; // height: 70%;
     margin: 0 auto;
     box-sizing: border-box;
     border: 1px solid #000;
@@ -43,12 +42,12 @@ div.container {
 }
 
 .markdown-container-mdmode {
-    width: 100%!important;
-    border-right: none!important;
+    width: 100% !important;
+    border-right: none !important;
 }
 
 .preview-container-mdmode {
-    display: none!important;
+    display: none !important;
 }
 
 #markdown-container>#markdown-area {
@@ -76,11 +75,11 @@ div.container {
 
 .markdown-container-premode {
     display: none;
-    border-right: none!important;
+    border-right: none !important;
 }
 
 .preview-container-premode {
-    width: 100%!important;
+    width: 100% !important;
 }
 
 /* Toolbar */
@@ -151,6 +150,7 @@ svg.icon:hover {
 }
 
 /* Tooltip */
+
 span.tooltip {
     visibility: hidden;
     width: 80px;
@@ -167,19 +167,21 @@ span.tooltip {
     transition: opacity 0.8s, top 0.5s;
 }
 
-.draft-menu > li:hover .tooltip{
+.draft-menu>li:hover .tooltip {
     opacity: 1;
-    top:-25px;
+    top: -25px;
     visibility: visible;
 }
 
 /* Wrapper */
+
 div.wrapper {
     width: 80%;
     margin: 0 auto 10px;
 }
 
 /* Switch */
+
 div.switch {
     font-weight: bold;
     font-size: 0.65em;
@@ -190,41 +192,40 @@ div.switch p {
     margin: 0;
 }
 
-
-div.switch  a{
-    text-decoration: none;    
+div.switch a {
+    text-decoration: none;
     color: #000;
     width: 32px;
     height: 20px;
-    line-height: 20px;  
+    line-height: 20px;
     text-align: center;
     display: inline-block;
 }
 
-div.switch  a:hover {
+div.switch a:hover {
     opacity: 0.6;
 }
 
 a.on {
-    color: #fff!important;
+    color: #fff !important;
     background: #000;
 }
-
 
 /* Modal */
 
 .modal {
     font-family: 'Montserrat', sans-serif;
-    position: fixed; 
-    z-index: 99999; 
+    position: fixed;
+    z-index: 99999;
     left: 15%;
     top: 28%;
-    width: 40%;  
-    overflow: auto; 
+    width: 40%;
+    overflow: auto;
     overflow-x: hidden;
 }
 
 /* Modal Content */
+
 .modal-content {
     background-color: #fefefe;
     z-index: 99999;
@@ -240,10 +241,11 @@ div.modal-head {
 }
 
 /* The Close Button */
+
 .close {
     color: #000;
     float: right;
-    font-size: 20px!important;
+    font-size: 20px !important;
     font-weight: bold;
 }
 
@@ -255,6 +257,7 @@ div.modal-head {
 }
 
 /* About Modal */
+
 .about-modal {
     font-family: 'Montserrat', sans-serif;
 }
@@ -274,22 +277,22 @@ div.modal-head {
     color: #aaa;
 }
 
-p.about-link a{
+p.about-link a {
     text-decoration: underline;
     color: #000;
 }
 
-p.about-link a:hover{
+p.about-link a:hover {
     background: #000;
     color: #fff;
 }
 
-p.about-info a{
-    text-decoration:none;
+p.about-info a {
+    text-decoration: none;
     color: #000;
 }
 
-p.about-info a:hover{
+p.about-info a:hover {
     background: #000;
     color: #fff;
 }
@@ -297,7 +300,7 @@ p.about-info a:hover{
 /* CodeBlock Modal */
 
 div#codeblock-selectbar {
-    margin:0 0 10px;
+    margin: 0 0 10px;
 }
 
 div#codeblock-cnt {
@@ -375,6 +378,7 @@ div#codeblock-footer:after {
 }
 
 /* Table Modal */
+
 div#table-cnt {
     width: 90%;
     text-align: center;
@@ -432,8 +436,7 @@ span.export-title {
 }
 
 div.export-modal {
-    font-family: 'Montserrat', sans-serif;
-    // width: 340px;
+    font-family: 'Montserrat', sans-serif; // width: 340px;
 }
 
 div.export-cnt {
@@ -475,11 +478,12 @@ div.how-cnt {
     width: 100%;
 }
 
-div.how-keyshortcuts-cnt, div.how-referlink-cnt {
+div.how-keyshortcuts-cnt,
+div.how-referlink-cnt {
     margin-top: 40px;
 }
 
-div.how-title{
+div.how-title {
     font-size: 1.1em;
     font-weight: bold;
     margin: 0 0 20px;
@@ -492,7 +496,7 @@ div.how-cnt ul {
     padding-left: 20px;
 }
 
-div.how-cnt ul > li {
+div.how-cnt ul>li {
     margin-bottom: 4px;
 }
 
@@ -513,7 +517,8 @@ table.how-tb {
     width: 90%;
 }
 
-table.how-tb td,th{
+table.how-tb td,
+th {
     text-align: left;
     border: 2px solid #000;
     padding: 5px;
@@ -521,4 +526,108 @@ table.how-tb td,th{
 
 table.how-tb td {
     font-size: 0.8em;
+}
+
+/* imglink modal */
+
+div.label-box {
+    margin: 10px 0;
+    padding: 3px 0 3px 10px;
+    font-size: 14px;
+    height: 26px;
+    color: #000;
+    background: #fff;
+    border: #000 2px solid;
+    font-weight: bold;
+}
+
+div.label-box:hover {
+    opacity: 0.66;
+}
+
+label {
+    display: block;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+img.file-img {
+    display: none;
+    width: auto;
+    height: 60px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+div.info {
+    border: #000 2px solid;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+p.img-link {
+    background: #000;
+    color: #fff;
+    font-size: 0.66em;
+    height: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 3px 0 3px 5px;
+    overflow: hidden;
+}
+
+p.img-link:hover {
+    cursor: pointer;
+    opacity: 0.66;
+}
+
+p.file-info {
+    font-size: 0.85em;
+    height: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 3px 0 3px 5px;
+    overflow: hidden;
+}
+
+input#file {
+    display: none;
+}
+
+div.imglink-footer a {
+    float: right;
+    padding: 5px 5px;
+    border: 1px solid #000;
+    color: #000;
+    width: 50px;
+    text-align: center;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+div.smms {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div.smms:hover {
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+}
+
+div.imglink-footer:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+div.imglink-footer a:hover {
+    background: #eee;
 }
