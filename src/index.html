@@ -239,13 +239,94 @@
         <div class="markdown-body" id="preview-container"></div>
     </div>
 
-    <input accept="text/plain" type="file" id="md-file" style="filter:alpha(opacity=0);opacity:0;width: 0;height: 0;display:none;" />
+    <input accept="text/plain" type="file" id="md-file" style="filter:alpha(opacity=0);opacity:0;width: 0;height: 0;display:none;"
+    />
 
     <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/notie.min.js"></script>
     <script src="./lib/highlight.pack.js"></script>
     <script src="./lib/html2pdf.bundle.min.js"></script>
     <script src="./lib/iconfont.min.js"></script>
+    <script>
+        $(function () {
 
+            $('body').on('click', 'a.remove-btn', function () {
+                $('input#file').val('');
+                $('div.info p.status').text('HERE IS YOUR IMGAE!');
+                $('img.file-img').attr('src', '');
+                $('img.file-img').css('display', 'none');
+                $('p.ocr-info').html('');
+            });
+
+            $('p.ocr-info').click(function () {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($(this).text()).select();
+                document.execCommand("copy");
+                alert('Copy Markdown: ' + $temp.val());
+                $temp.remove();
+            });
+
+            $('div.baidu-ocr').click(function () {
+                window.open("https://sm.ms/");
+            });
+
+            $('input#file').change(function () {
+                var file = document.getElementById('file').files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    $('img.file-img').css('display', 'block');
+                    $('img.file-img').attr('src', reader.result);
+                    $('div.info p.status').text('');
+                };
+            });
+
+            $('a.ocr-btn').on('click', (function () {
+                if (!$('input#file').val()) {
+                    alert('Please choose your img!');
+                }
+                if ($('input#file').val()) {
+                    var file = document.getElementById('file').files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    $('div.info p.status').text('Uploading...');
+                    reader.onload = function (e) {
+                        var regex = new RegExp('data.*?base64,');
+                        var str = reader.result;
+                        var imgdata = str.replace(str.match(regex)[0], '');
+                        $.ajax({
+                            url: 'http://localhost:8080',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                img: imgdata
+                            },
+                            success: function (data) {
+                                $('div.info p.status').text('');
+                                if (data.length === 0) {
+                                    $('p.ocr-info').html('Sorry...');
+                                } else if (data.length > 0) {
+                                    var result = '';
+                                    for (var word of data) {
+                                        result +=
+                                            `<p class=\"ocr-info-line\">${word.words}</p>`;
+                                    }
+                                    $('p.ocr-info').html(result);
+                                }
+                                console.log(data);
+                            },
+                            error: function (jqXHR, textStatus, err) {
+                                console.log('text status ' + textStatus + ', err ' +
+                                    err);
+                            }
+                        });
+                    };
+                }
+
+            }));
+        });
+    </script>
 
 </body>
 

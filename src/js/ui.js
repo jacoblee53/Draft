@@ -338,12 +338,29 @@ module.exports = {
 
     addOCRModal: function addOCRModal(newClass) {
         $('body').append(`    
-            <div id=\"myModal\" class=\"modal ${newClass}\">
-                <div class=\"modal-content\">
-                    <span class=\"close\">&times;</span>
-                    <p>OCR</p>
+        <div id=\"myModal\" class=\"modal\">
+            <div class=\"modal-content ${newClass}\">
+                <span class=\"close\">&times;</span>
+                <div class=\"modal-head\"></div>
+                <div class=\"imglink-cnt\">
+                    <div class=\"label-box\">
+                        <label for=\"file\">Browser Image ...</label>
+                    </div>
+                    <input type=\"file\" accept=\"image/*\" id=\"file\" name=\"image\">
+                    <div class=\"info\">
+                        <img class='file-img' src=\"#\" >
+                        <p class=\"status\">HERE IS YOUR IMGAE!</p>
+                        <p class=\"ocr-info\"></p>
+                    </div>
+                </div>
+                
+                <div class=\"imglink-footer\">
+                    <div class=\"baidu-ocr\">@ Baidu-OCR</div>
+                    <a class=\"ocr-btn btn\">OCR</a>
+                    <a class=\"remove-btn btn\">Remove</a>
                 </div>
             </div>
+        </div>
         `);
     },
 };

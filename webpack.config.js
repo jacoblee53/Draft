@@ -111,6 +111,9 @@ module.exports = {
         },{
             from: "md",
             to: "md"
+        }, {
+            from: "fonts",
+            to: "fonts"
         }], path.resolve(__dirname, "src")),
 
         new cleanWebpackPlugin([
@@ -118,7 +121,6 @@ module.exports = {
             'dist/js',
             'dist/img',
             'dist/*.html',
-            'dist/fonts'
         ]),
 
         iconExtractPlugin,
@@ -130,11 +132,6 @@ module.exports = {
             chunks: ['main'],
         }),
 
-        // jQuery
-        // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery"
-        // }),
     ],
 
 };

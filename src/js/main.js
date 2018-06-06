@@ -1,7 +1,9 @@
+import "../css/font.scss";
 import "../css/xq-light.scss";
 import "../css/github-markdown.scss";
 import "../css/github-highlight.scss";
 import "../css/iconfont.scss";
+import "../css/notie.scss";
 import "../css/main.scss";
 
 var ui = require('../js/ui');
@@ -41,7 +43,7 @@ $(function () {
     init();
 
 
-    
+
     /*=========== Event Listener ===========*/
 
 
@@ -64,11 +66,50 @@ $(function () {
     // Load Markdown File
     $('#md-file').on('change', loadMdFile);
 
+    // Dynamic events 
+    $('body').on('click', 'span.close:first', removeModal)
+        .on('click', 'a.cancel', removeModal)
+        .on('mousedown', 'div.modal-head', dragModal)
+        .on('click', 'div#codeblock-footer a.enter', generateCodeblock)
+        .on('change', 'div#codeblock-selectbar select', selectCodeMode)
+        .on('click', 'div#table-footer a.enter', generateTable)
+        .on('click', 'div.export-to-md', exportToMd)
+        .on('click', 'div.export-to-html', exportToHtml)
+        .on('click', 'div.export-to-pdf', exportToPdf)
+        .on('click', 'a.remove-btn', removeImglinkInfo)
+        .on('click', 'p.img-link', copyImglink)
+        .on('change', 'input#file', loadNewImg)
+        .on('click', 'a.upload-btn', uploadImg)
+        .on('click', 'div.smms', openSmms)
+        .on('click', 'a.ocr-remove-btn', OCRRemove)
+        .on('click', 'p.ocr-info', showOCRInfo)
+        .on('click', 'div.baidu-ocr', openBaiduOCR)
+        .on('click', 'a.ocr-btn', OCR);
+
+    // Keyboard listener
+    $(document).on('keydown', keymap.saveFile)
+        .on('keydown', keymap.loadFile)
+        .on('keydown', keymap.setTable)
+        .on('keydown', {editor: editor}, keymap.mdMode)
+        .on('keydown', {editor: editor}, keymap.preMode)
+        .on('keydown', {editor: editor}, keymap.quit)
+        .on('keydown', {editor: editor}, keymap.insertHeading)
+        .on('keydown', {editor: editor}, keymap.setBold)
+        .on('keydown', {editor: editor}, keymap.setItalicAndImage)
+        .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
+
+
+    // $(window).click(function (e) {
+    //     if (e.target.id === 'myModal') {
+    //         removeModal();
+    //     }
+    // });
+
     // Toolbar click   
     $('div.draft-toolbar').on('click', 'li', function () {
 
         var func = $(this).attr('id');
-        while($('div.modal').length){
+        while ($('div.modal').length) {
             removeModal();
         }
         switch (func) {
@@ -193,57 +234,41 @@ $(function () {
                 editor.focus();
                 break;
             case 'empty':
-                format.setEmpty(editor);
-                editor.focus();
+                notie.confirm({
+                    text: 'Are you sure you want to do that?<br><b>BE CAREFUL!</b>',
+                    submitText: 'Empty',
+                    cancelCallback: function () {
+                        notie.alert({
+                            type: 'success',
+                            text: 'Don’t go, don’t go baby!',
+                            time: 2
+                        });
+                        editor.focus();
+                    },
+                    submitCallback: function () {
+                        notie.alert({
+                            type: 1,
+                            text: 'Done! :D',
+                            time: 2
+                        });
+                        format.setEmpty(editor);
+                        editor.focus();
+                    }
+                });
+                
+                
                 break;
             default:
                 break;
         }
     });
 
-    // Dynamic events 
-    $('body').on('click', 'span.close:first', removeModal)
-        .on('click', 'a.cancel', removeModal)
-        .on('mousedown', 'div.modal-head', dragModal)
-        .on('click', 'div#codeblock-footer a.enter', generateCodeblock)
-        .on('change', 'div#codeblock-selectbar select', selectCodeMode)
-        .on('click', 'div#table-footer a.enter', generateTable)
-        .on('click', 'div.export-to-md', exportToMd)
-        .on('click', 'div.export-to-html', exportToHtml)
-        .on('click', 'div.export-to-pdf', exportToPdf)
-        .on('click', 'a.remove-btn', removeImglinkInfo)
-        .on('click', 'p.img-link', copyImglink)
-        .on('change', 'input#file', loadNewImg)
-        .on('click', 'a.upload-btn', uploadImg)
-        .on('click', 'div.smms', function () {
-            window.open("https://sm.ms/");
-        });
-
-    // Keyboard listener
-    $(document).on('keydown', keymap.saveFile)
-            .on('keydown', keymap.loadFile)
-            .on('keydown', keymap.setTable)
-            .on('keydown', {editor: editor}, keymap.mdMode)
-            .on('keydown', {editor: editor}, keymap.preMode)
-            .on('keydown', {editor: editor}, keymap.quit)
-            .on('keydown', {editor: editor}, keymap.insertHeading)
-            .on('keydown', {editor: editor}, keymap.setBold)
-            .on('keydown', {editor: editor}, keymap.setItalicAndImage)
-            .on('keydown', {editor: editor}, keymap.setLinkAndSelect);
-    
-
-    // $(window).click(function (e) {
-    //     if (e.target.id === 'myModal') {
-    //         removeModal();
-    //     }
-    // });
-
 
     
+
     /*=========== Functions  ===========*/
 
 
-    
     function init() {
         ui.addTooltip();
         editor.focus();
@@ -370,7 +395,7 @@ $(function () {
         removeModal();
     }
 
-    function removeImglinkInfo() {  
+    function removeImglinkInfo() {
         $('input#file').val('');
         $('div.info p.status').text('HERE IS YOUR IMGAE!');
         $('img.file-img').attr('src', '');
@@ -384,11 +409,15 @@ $(function () {
         $("body").append($temp);
         $temp.val($(this).text()).select();
         document.execCommand("copy");
-        alert('Copy Markdown: ' + $temp.val());
+        notie.alert({
+            type: 'success',
+            text: `:D Copy Markdown:   ${$temp.val()}`,
+            time: 2
+        });
         $temp.remove();
     }
 
-    function loadNewImg() {  
+    function loadNewImg() {
         var file = document.getElementById('file').files[0];
         var name = file.name;
         var reader = new FileReader();
@@ -400,9 +429,13 @@ $(function () {
         };
     }
 
-    function uploadImg() {  
+    function uploadImg() {
         if (!$('input#file').val()) {
-            alert('Please choose your img!');
+            notie.alert({
+                type: 'success',
+                text: `:( Please choose your <b>img<b> !`,
+                time: 2
+            });
         }
         if ($('input#file').val()) {
             var file = document.getElementById('file').files[0];
@@ -434,6 +467,11 @@ $(function () {
                     },
                     error: function (res) {
                         $('div.info p.status').text('Error!');
+                        notie.alert({
+                            type: 'success',
+                            text: `Error!`,
+                            time: 2
+                        });
                     }
                 })
                 .fail(function () {
@@ -442,6 +480,80 @@ $(function () {
                 .always(function () {
                     console.log('Done!');
                 });
+        }
+    }
+
+    // OCR functions
+
+    function openSmms() {
+        window.open("https://sm.ms/");
+    }
+
+    function OCRRemove() {
+        $('input#file').val('');
+        $('div.info p.status').text('HERE IS YOUR IMGAE!');
+        $('img.file-img').attr('src', '');
+        $('img.file-img').css('display', 'none');
+        $('p.ocr-info').html('');
+    }
+    
+    function showOCRInfo() {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(this).text()).select();
+        document.execCommand("copy");
+        notie.alert({
+            type: 'success',
+            text: `:D Done!`,
+            time: 2
+        });
+        $temp.remove();
+    }
+    
+    function openBaiduOCR() {
+        window.open("https://cloud.baidu.com/product/ocr");
+    }
+
+    function OCR() {
+        if (!$('input#file').val()) {
+            notie.alert({
+                type: 'success',
+                text: `:( Please choose your <b>img<b> !`,
+                time: 2
+            });
+        }
+        if ($('input#file').val()) {
+            var file = document.getElementById('file').files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            $('div.info p.status').text('Uploading...');
+            reader.onload = function (e) {
+                var regex = new RegExp('data.*?base64,');
+                var str = reader.result;
+                var imgdata = str.replace(str.match(regex)[0],'');
+                $.ajax({
+                    url: 'http://localhost:8080',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {img: imgdata},
+                    success: function (data) {  
+                        $('div.info p.status').text('');   
+                        if(data.length === 0) {
+                            $('p.ocr-info').html('Sorry...');
+                        } else if (data.length > 0) {
+                            var result = '';
+                            for(var word of data) {
+                                result += `<p class=\"ocr-info-line\">${word.words}</p>`;
+                            }
+                            $('p.ocr-info').html(result);
+                        }
+                        console.log(data);
+                    },
+                    error: function (jqXHR, textStatus, err) {  
+                        console.log('text status '+textStatus+', err '+err);
+                    }
+                });
+            };
         }
     }
 

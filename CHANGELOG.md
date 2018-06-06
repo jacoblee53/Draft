@@ -91,3 +91,11 @@
 3. fix: Fix the toolbar click issue(remove modal while modal exists);
 
 👆 [06/02](http://oppnkay27.bkt.clouddn.com/20180603152795597886462.png)
+
+=== 06/05 ===
+
+1. feat: Add the img-link modal (use smms API);
+2. style: Change the default notification style(use notie);
+3. style: Add local fonts (from Google Fonts);
+
+👆 [06/05](http://oppnkay27.bkt.clouddn.com/20180603152795597886462.png)

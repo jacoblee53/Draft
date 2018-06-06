@@ -24,7 +24,7 @@ img#draft-logo:hover {
 
 div.container {
     width: 80%;
-    height: 470px; // height: 70%;
+    height: 450px; // height: 70%;
     margin: 0 auto;
     box-sizing: border-box;
     border: 1px solid #000;
@@ -313,7 +313,7 @@ div#codeblock-cnt {
 div#codeblock-footer a {
     float: right;
     padding: 5px 5px;
-    border: 1px solid #000;
+    border: 2px solid #000;
     color: #000;
     width: 50px;
     text-align: center;
@@ -395,7 +395,7 @@ input.num-input {
     outline: none;
     font-size: 12px;
     font-weight: bold;
-    border: #000 1px solid;
+    border: #000 2px solid;
     padding-left: 10px;
     text-decoration: none;
     margin: 0 10px 0 5px;
@@ -404,7 +404,7 @@ input.num-input {
 div#table-footer a {
     float: right;
     padding: 5px 5px;
-    border: 1px solid #000;
+    border: 2px solid #000;
     color: #000;
     width: 50px;
     text-align: center;
@@ -599,7 +599,7 @@ input#file {
 div.imglink-footer a {
     float: right;
     padding: 5px 5px;
-    border: 1px solid #000;
+    border: 2px solid #000;
     color: #000;
     width: 50px;
     text-align: center;
@@ -630,4 +630,41 @@ div.imglink-footer:after {
 
 div.imglink-footer a:hover {
     background: #eee;
+}
+
+/* OCR modal */
+
+
+p.ocr-info {
+    background: #000;
+    color: #fff;
+    font-size: 0.66em;
+    height: auto;
+    max-height: 188px;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 3px 0 3px 5px;
+    overflow: auto;
+}
+
+p.ocr-info:hover {
+    cursor: pointer;
+    opacity: 0.66;
+}
+
+p.ocr-info-line {
+    margin: 4px 0;
+}
+
+
+div.baidu-ocr {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div.baidu-ocr:hover {
+    cursor: pointer;
+    background: #000;
+    color: #fff;
 }
