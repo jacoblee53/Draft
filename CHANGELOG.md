@@ -99,3 +99,9 @@
 3. style: Add local fonts (from Google Fonts);
 
 👆 [06/05](http://oppnkay27.bkt.clouddn.com/20180603152795597886462.png)
+
+=== 06/06 ===
+
+1. feat: Add the ocr modai (use baidu-ocr sdk);
+2. todo: emoji modal;
+3. todo: toc modal;

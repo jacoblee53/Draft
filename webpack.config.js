@@ -108,9 +108,6 @@ module.exports = {
         new transferWebpackPugin([{
             from: "lib",
             to: "lib"
-        },{
-            from: "md",
-            to: "md"
         }, {
             from: "fonts",
             to: "fonts"
