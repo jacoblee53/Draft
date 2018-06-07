@@ -12,7 +12,6 @@ app.use('/css', express.static(__dirname + '/css'));
 app.use('/img', express.static(__dirname + '/img'));
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/lib', express.static(__dirname + '/lib'));
-app.use('/md', express.static(__dirname + '/md'));
 app.use('/fonts', express.static(__dirname + '/fonts'));
 
 
@@ -36,7 +35,7 @@ app.post('/', function (req, res) {
     /* OCR */
     client.generalBasic(img, options).then(function(result) {
         // console.log(JSON.stringify(result));
-        // console.log(result.words_result);
+        console.log(result.words_result);
         res.send(result.words_result);
     }).catch(function(err) {
         console.log("app.js: " + err);
