@@ -224,6 +224,7 @@ $(function () {
                 break;
             case 'toc':
                 format.setTOC(editor);
+                getTOC();
                 break;
             case 'mdmode':
                 format.setMdMode();
@@ -556,5 +557,29 @@ $(function () {
             };
         }
     }
+
+    function getTOC() {
+        var mddata = editor.getValue();
+        $.ajax({
+            url: 'http://localhost:8080',
+            type: 'POST',
+            dataType: 'json',
+            data: {md: mddata},
+            success: function (data) {  
+                var cursor = editor.getCursor();
+                editor.setCursor({
+                    line: 0,
+                    ch: 0
+                });
+                editor.replaceSelection(`<!-- /TOC -->\n\n${data.TOC}\n\n<!-- /TOC -->\n\n`);
+                console.log(data);
+            },
+            error: function (jqXHR, textStatus, err) {  
+                console.log('text status '+textStatus+', err '+err);
+            }
+        });
+    }
+
+
 
 });

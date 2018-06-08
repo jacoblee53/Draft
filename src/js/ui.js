@@ -357,7 +357,7 @@ module.exports = {
                 <div class=\"imglink-footer\">
                     <div class=\"baidu-ocr\">@ Baidu-OCR</div>
                     <a class=\"ocr-btn btn\">OCR</a>
-                    <a class=\"remove-btn btn\">Remove</a>
+                    <a class=\"ocr-remove-btn btn\">Remove</a>
                 </div>
             </div>
         </div>

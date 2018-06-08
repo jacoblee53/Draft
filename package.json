@@ -50,6 +50,7 @@
   "dependencies": {
     "baidu-aip-sdk": "^2.3.1",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "markdown-toc": "^1.2.0"
   }
 }

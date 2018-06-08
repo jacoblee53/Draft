@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var AipOcrClient = require("baidu-aip-sdk").ocr;
+var toc = require('markdown-toc');
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -29,17 +30,25 @@ options["detect_language"] = "true";
 options["probability"] = "true";
 
 
-app.post('/', function (req, res) {  
-    var img = req.body.img;
-    
-    /* OCR */
-    client.generalBasic(img, options).then(function(result) {
-        // console.log(JSON.stringify(result));
-        console.log(result.words_result);
-        res.send(result.words_result);
-    }).catch(function(err) {
-        console.log("app.js: " + err);
-    });
+app.post('/', function (req, res) {
+
+    if (req.body.hasOwnProperty("img")) {
+        var imgdata = req.body.img;
+
+        /* OCR */
+        client.generalBasic(imgdata, options).then(function (result) {
+            // console.log(JSON.stringify(result));
+            // console.log(result.words_result);
+            res.send(result.words_result);
+        }).catch(function (err) {
+            console.log("app.js: " + err);
+        });
+    } else if(req.body.hasOwnProperty("md")) {
+        var mddata = req.body.md;
+        var TOC = toc(mddata).content;
+        res.send({TOC: TOC});
+        console.log(TOC);
+    }
 });
 
 
