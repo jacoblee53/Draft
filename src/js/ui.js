@@ -351,7 +351,6 @@ module.exports = {
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"😥\" src=\"https://twemoji.maxcdn.com/2/72x72/1f625.png\">
                         </li>
-
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"🀄\" src=\"https://twemoji.maxcdn.com/2/72x72/1f004.png\">
                         </li>
@@ -985,15 +984,12 @@ module.exports = {
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"✉\" src=\"https://twemoji.maxcdn.com/2/72x72/2709.png\">
                         </li>
-
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"✊\" src=\"https://twemoji.maxcdn.com/2/72x72/270a.png\">
                         </li>
-
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"✋\" src=\"https://twemoji.maxcdn.com/2/72x72/270b.png\">
                         </li>
-
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"✌\" src=\"https://twemoji.maxcdn.com/2/72x72/270c.png\">
                         </li>
@@ -1054,7 +1050,6 @@ module.exports = {
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"❤\" src=\"https://twemoji.maxcdn.com/2/72x72/2764.png\">
                         </li>
-
                         <li>
                             <img draggable=\"false\" class=\"emoji\" alt=\"⤴\" src=\"https://twemoji.maxcdn.com/2/72x72/2934.png\">
                         </li>
@@ -1118,6 +1113,7 @@ module.exports = {
                     </ul>
                 </div>
                 <div class=\"emoji-footer\">
+                    <div class=\"twemoji\">@ twemoji</div>
                     <a class=\"emoji-btn btn\">Enter</a>
                     <a class=\"emoji-remove-btn btn\">Cancel</a>
                 </div>

@@ -87,6 +87,7 @@ $(function () {
         .on('click', 'div.baidu-ocr', openBaiduOCR)
         .on('click', 'a.ocr-btn', OCR)
         .on('click', 'a.emoji-btn', addEmoji)
+        .on('click', 'div.twemoji', openTwemoji)
         .on('click', 'ul.emoji-list li', emojiToggle);
 
     // Keyboard listener
@@ -596,11 +597,15 @@ $(function () {
         $(this).toggleClass('emoji-select');
     }
 
+    function openTwemoji(){
+        window.open("https://github.com/twitter/twemoji");
+    }
+
     function addEmoji() {
         var result = '';
         $('ul.emoji-list li').each(function () {  
             if($(this).hasClass('emoji-select')) {
-                var regex = /[a-zA-Z0-9]*.png/;
+                var regex = /[a-zA-Z0-9\-]*.png/;
                 var arr = ($(this).find('img').attr('src')).match(regex);
                 var str = arr[0].substr(0, arr[0].length-4);
                 result += `:${str}:`;

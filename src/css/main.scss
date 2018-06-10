@@ -691,6 +691,7 @@ div.emoji-header p{
 div.emoji-header a {
     text-decoration: none;
     color: #fff;
+    font-size: 14px;
     background: #000;
     padding: 3px 3px 3px 8px;
 }
@@ -754,6 +755,18 @@ div.emoji-footer:after {
 
 div.emoji-footer a:hover {
     background: #eee;
+}
+
+div.twemoji {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div.twemoji:hover {
+    cursor: pointer;
+    background: #000;
+    color: #fff;
 }
 
 .emoji-select {
