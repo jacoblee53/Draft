@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack-dev-server",
     "build:prod": "webpack -p",
-    "start": "node ./dist/app"
+    "start": "webpack -p && node ./dist/app"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "baidu-aip-sdk": "^2.3.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "markdown-toc": "^1.2.0"
+    "markdown-toc": "^1.2.0",
+    "serve-favicon": "^2.5.0"
   }
 }

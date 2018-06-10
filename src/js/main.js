@@ -82,9 +82,12 @@ $(function () {
         .on('click', 'a.upload-btn', uploadImg)
         .on('click', 'div.smms', openSmms)
         .on('click', 'a.ocr-remove-btn', OCRRemove)
+        .on('click', 'a.emoji-remove-btn', removeModal)
         .on('click', 'p.ocr-info', showOCRInfo)
         .on('click', 'div.baidu-ocr', openBaiduOCR)
-        .on('click', 'a.ocr-btn', OCR);
+        .on('click', 'a.ocr-btn', OCR)
+        .on('click', 'a.emoji-btn', addEmoji)
+        .on('click', 'ul.emoji-list li', emojiToggle);
 
     // Keyboard listener
     $(document).on('keydown', keymap.saveFile)
@@ -548,6 +551,13 @@ $(function () {
                             }
                             $('p.ocr-info').html(result);
                         }
+                        if(data.hasOwnProperty('error')){
+                            notie.alert({
+                                type: 'success',
+                                text: `:( Error!`,
+                                time: 2
+                            });
+                        }
                         console.log(data);
                     },
                     error: function (jqXHR, textStatus, err) {  
@@ -571,7 +581,7 @@ $(function () {
                     line: 0,
                     ch: 0
                 });
-                editor.replaceSelection(`<!-- /TOC -->\n\n${data.TOC}\n\n<!-- /TOC -->\n\n`);
+                editor.replaceSelection(`${data.TOC}\n\n`);
                 console.log(data);
             },
             error: function (jqXHR, textStatus, err) {  
@@ -580,6 +590,26 @@ $(function () {
         });
     }
 
+    // Emoji functions
+
+    function emojiToggle(){
+        $(this).toggleClass('emoji-select');
+    }
+
+    function addEmoji() {
+        var result = '';
+        $('ul.emoji-list li').each(function () {  
+            if($(this).hasClass('emoji-select')) {
+                var regex = /[a-zA-Z0-9]*.png/;
+                var arr = ($(this).find('img').attr('src')).match(regex);
+                var str = arr[0].substr(0, arr[0].length-4);
+                result += `:${str}:`;
+            }
+        });
+        editor.replaceSelection(`${result}`);
+        removeModal();
+        // console.log(result);
+    }
 
 
 });

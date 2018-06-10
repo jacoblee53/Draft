@@ -126,6 +126,7 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html',
+            favicon: 'src/img/favicon.ico',
             chunks: ['main'],
         }),
 

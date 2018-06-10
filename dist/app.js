@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
+var path = require('path');
 var AipOcrClient = require("baidu-aip-sdk").ocr;
 var toc = require('markdown-toc');
 
@@ -14,6 +16,7 @@ app.use('/img', express.static(__dirname + '/img'));
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/lib', express.static(__dirname + '/lib'));
 app.use('/fonts', express.static(__dirname + '/fonts'));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 
 /* Baidu-OCR COONFIG */
@@ -42,13 +45,19 @@ app.post('/', function (req, res) {
             res.send(result.words_result);
         }).catch(function (err) {
             console.log("app.js: " + err);
+            res.send({error: 'Error!'});
         });
-    } else if(req.body.hasOwnProperty("md")) {
+        
+    } 
+    else if(req.body.hasOwnProperty("md")) {
+
         var mddata = req.body.md;
         var TOC = toc(mddata).content;
+        
         res.send({TOC: TOC});
-        console.log(TOC);
+        // console.log(TOC);
     }
+      
 });
 
 
