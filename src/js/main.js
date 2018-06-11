@@ -88,7 +88,14 @@ $(function () {
         .on('click', 'a.ocr-btn', OCR)
         .on('click', 'a.emoji-btn', addEmoji)
         .on('click', 'div.twemoji', openTwemoji)
-        .on('click', 'ul.emoji-list li', emojiToggle);
+        .on('click', 'ul.emoji-list li', emojiToggle)
+        .on('click', 'a.start', function(){
+            $('div.draft-toolbar').css('display', 'block');
+            $('div.container').css('display', 'block');
+            $('div.wrapper').css('display', 'block');
+            $('div.logo').css('display', 'none');
+            $('a.start').css('display','none');
+        });
 
     // Keyboard listener
     $(document).on('keydown', keymap.saveFile)
@@ -188,6 +195,7 @@ $(function () {
                 break;
             case 'load':
                 format.setLoad();
+                editor.focus();
                 break;
             case 'about':
                 format.setAbout();
@@ -603,16 +611,24 @@ $(function () {
 
     function addEmoji() {
         var result = '';
+        var notieimg = '';
         $('ul.emoji-list li').each(function () {  
             if($(this).hasClass('emoji-select')) {
                 var regex = /[a-zA-Z0-9\-]*.png/;
                 var arr = ($(this).find('img').attr('src')).match(regex);
                 var str = arr[0].substr(0, arr[0].length-4);
                 result += `:${str}:`;
+                notieimg += `<img src='${$(this).find('img').attr('src')}' width="24px" height="24px">`;
             }
         });
         editor.replaceSelection(`${result}`);
         removeModal();
+        notie.alert({
+            type: 'success',
+            text: `${notieimg}`,
+            time: 2
+        });
+        editor.focus();
         // console.log(result);
     }
 

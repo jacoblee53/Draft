@@ -9,7 +9,7 @@ body {
 div.logo {
     width: 164px;
     height: 73px;
-    margin: 20px auto 0;
+    margin:200px auto 0;
 }
 
 img#draft-logo {
@@ -23,9 +23,10 @@ img#draft-logo:hover {
 }
 
 div.container {
+    display: none;
     width: 80%;
-    height: 480px; // height: 70%;
-    margin: 0 auto;
+    height: 490px; 
+    margin: 0 auto 20px;
     box-sizing: border-box;
     border: 1px solid #000;
 }
@@ -90,6 +91,7 @@ img.emoji {
 /* Toolbar */
 
 div.draft-toolbar {
+    display: none;
     width: 80%;
     margin: 0 auto;
     background: #fff;
@@ -182,7 +184,20 @@ span.tooltip {
 
 div.wrapper {
     width: 80%;
-    margin: 0 auto 10px;
+    margin: 60px auto 10px;
+    display: none;
+}
+
+/* Footer */
+
+div.footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.88em;
+    padding: 5px 0;
+    bottom: 0;
 }
 
 /* Switch */
@@ -795,3 +810,27 @@ li.toc-level-6 {
     margin-left: 10em;
     list-style: square;
 }
+
+/* Start Link Animation */
+
+a.start {
+    display: block;
+    width: 250px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    line-height: 1.5rem;
+    text-align: center;
+    margin: 170px auto 0;
+    // transform: translate3d(-50%, -50%, 0);
+  }
+  a.start span {
+    background-image: linear-gradient(to bottom, white 70%, transparent 70%), linear-gradient(to right, #7B7EAD 33%, #84A8C1 33%, #84A8C1 66%, #9BCCB9 66%);
+    background-size: 306% 100%;
+    background-position: 100% 0;
+    transition: 1s background-position;
+  }
+  a.start:hover span {
+    background-position: 0%;
+  }

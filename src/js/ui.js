@@ -217,7 +217,7 @@ module.exports = {
                 <div class=\"modal-head\"></div>
                 <div class=\"emoji-header\">
                     <p>
-                        <a href=\"https://github.com/twitter/twemoji/tree/gh-pages/36x36\" target=\"_blank\">To find more emoji...</a>
+                        <a href=\"https://github.com/twitter/twemoji/tree/gh-pages/72x72\" target=\"_blank\">To find more emoji...</a>
                     </p>
                 </div>
                 <div class=\"emoji-cnt\">

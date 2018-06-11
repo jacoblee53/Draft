@@ -110,10 +110,18 @@
 
 1. style: Add the favicon.ico and change the logo;
 2. docs: Add a toc.md (test TOC);
-3. feat: Add emoji modal (marked.js);
-4. feat: Add [TOC] renderer (marked.js && twemoji);
+3. feat: Add emoji modal (marked.js && twemoji);
+4. feat: Add [TOC] renderer (marked.js);
 5. feat: Add twemoji map to how-to modal;
 
 👆 [06/10 TOC](http://oppnkay27.bkt.clouddn.com/20180610152864268656570.png)
 
 👆 [06/10 twemoji](http://oppnkay27.bkt.clouddn.com/20180610152864263041480.png)
+
+=== 06/11 ===
+
+1. feat: Add notie to show the newly added twemoji;
+2. feat: Add intro animation;
+3. style: Remove logo;
+
+👆 [06/11](http://oppnkay27.bkt.clouddn.com/2018061115287076438376.png)
