@@ -11,7 +11,6 @@ var keymap = require('../js/keymap');
 var format = require('../js/format');
 
 $(function () {
-
     /*=========== CodeMirror Editor Init ===========*/
 
     var editor = CodeMirror.fromTextArea($('.codemirror-textarea')[0], {

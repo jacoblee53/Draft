@@ -118,6 +118,7 @@ module.exports = {
             'dist/js',
             'dist/img',
             'dist/*.html',
+            'dist/lib',
         ]),
 
         iconExtractPlugin,
