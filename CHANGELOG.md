@@ -125,3 +125,11 @@
 3. style: Remove logo;
 
 👆 [06/11](http://oppnkay27.bkt.clouddn.com/2018061115287076438376.png)
+
+=== 06/17 ===
+
+1. feat: Add Katex renderer (katex.js);
+2. docs: Add the katex.md;
+3. docs: update README.md;
+
+👆 [06/17](http://oppnkay27.bkt.clouddn.com/20180617152922815974055.png)
