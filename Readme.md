@@ -12,6 +12,12 @@
 6. Support [KaTex](https://khan.github.io/KaTeX/function-support.html) and [Twemoji](https://twitter.github.io/twemoji/preview.html);
 7. Keyboard Shortcuts;
 
+## Demo
+
+[Let's Try Now!](http://138.128.201.158:8080/)
+
+<img src="./example/example.png">
+
 ## Usage
 
 ```shell
@@ -25,19 +31,13 @@ $ npm install
 # 开启热更新服务器，TOC\OCR功能无法使用 -> localhost:8080
 $ npm run build
 
-# 打包压缩项目，并输出生产模式文件
+# 打包压缩项目，并输出生产模式文件
 $ npm run build:prod
 
 # 打包压缩文件，启用node express，所有功能正常使用 -> localhost:8080
 $ npm start
 
 ```
-
-## Demo
-
-[Let's Try Now!](http://138.128.201.158:8080/)
-
-<img src="./example/example.png">
 
 ## Dependents 
 
